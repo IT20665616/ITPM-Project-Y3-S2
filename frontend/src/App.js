@@ -26,12 +26,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./Components/Hansi/Sidebar";
 import Header from "./Components/Hansi/Header";
+import HomePage from "./Components/Hansi/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header/>} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
     </BrowserRouter>

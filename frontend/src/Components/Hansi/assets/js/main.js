@@ -5,6 +5,15 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+// const PureCounter = reqire ("../vendor/purecounter/purecounter_vanilla");
+// import "../vendor/aos/aos";
+// import "../vendor/bootstrap/js/bootstrap.bundle";
+// import "../vendor/glightbox/js/glightbox";
+// import "../vendor/isotope-layout/isotope.pkgd";
+// const Swiper = reqire ( "../vendor/swiper");
+// import "../vendor/php-email-form/validate"
+// import { PureCounter } from "../vendor/purecounter/purecounter_vanilla";
 (function() {
   "use strict";
 

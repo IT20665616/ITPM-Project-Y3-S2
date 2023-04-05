@@ -123,6 +123,7 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
+  background: #000000;
 }
 
 #header.header-scrolled,
@@ -156,19 +157,20 @@ h6 {
 #  Get Startet Button
 --------------------------------------------------------------*/
 .get-started-btn {
-  color: #fff;
+  color: #0dd3fe;
   border-radius: 4px;
   padding: 7px 25px 8px 25px;
   white-space: nowrap;
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
   font-size: 14px;
   display: inline-block;
   border: 2px solid #0dd3fe;
 }
 
 .get-started-btn:hover {
-  background: #ffbb38;
-  color: #343a40;
+  border: 2px solid black;
+  background: #0dd3fe;
+  color: #000000;
 }
 
 @media (max-width: 992px) {
@@ -179,7 +181,7 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Navigation Menu
+# Navigation Menu 
 --------------------------------------------------------------*/
 /**
 * Desktop Navigation 
@@ -208,7 +210,7 @@ h6 {
   padding: 10px 0 10px 30px;
   font-size: 15px;
   font-weight: 600;
-  color: #fff;
+  color: #ffffff;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -406,7 +408,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/holdHands1.jpg") top center;
   background-size: cover;
   position: relative;
 }
