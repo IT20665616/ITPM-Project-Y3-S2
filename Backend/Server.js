@@ -39,3 +39,5 @@ app.listen (PORT, () => {
 
 
 //.... comment your route and add it here 
+const router = require("./Routes/EsharaRoutes/officers_route");
+app.use("/officers", router);
