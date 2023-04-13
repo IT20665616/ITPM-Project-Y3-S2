@@ -40,4 +40,9 @@ app.listen (PORT, () => {
 
 //.... comment your route and add it here 
 const router = require("./Routes/EsharaRoutes/officers_route");
+const appointment = require("./Routes/EsharaRoutes/appointments_route");
+
+
+
 app.use("/officers", router);
+app.use(appointment);
