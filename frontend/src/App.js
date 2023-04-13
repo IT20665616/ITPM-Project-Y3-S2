@@ -24,7 +24,7 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Sidebar from "./Components/Hansi/Sidebar";
+import Sidebar from "./Components/Hansi/GramaNiladhariUI/Sidebar";
 import Header from "./Components/Hansi/Header";
 import HomePage from "./Components/Hansi/HomePage";
 

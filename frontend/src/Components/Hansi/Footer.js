@@ -12,9 +12,9 @@ const Footer = () => {
                     <div class="container">
                         <div class="row">
 
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-4 col-md-6">
                                 <div class="footer-info">
-                                    <h3>Gp<span>.</span></h3>
+                                    <h3><span>Every person matters..</span></h3>
                                     A108 Adam Street <br />
                                     NY 535022, USA<br /><br />
                                     <strong>Phone:</strong> +1 5589 55488 55<br />
@@ -29,8 +29,14 @@ const Footer = () => {
                                 </div>
                             </div>
 
+                            <div class="col-lg-5 col-md-6 mt-5 footer-newsletter">
+                                <div class="row w-75">
+                                    <img src="assets/img/logoBlack.png" />
+                                </div>
+                            </div>
+
                             <div class="col-lg-2 col-md-6 footer-links">
-                                <h4>Useful Links</h4>
+                                <h4>Quick Links</h4>
                                 <ul>
                                     <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
                                     <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
@@ -40,34 +46,28 @@ const Footer = () => {
                                 </ul>
                             </div>
 
-                            <div class="col-lg-3 col-md-6 footer-links">
-                                <h4>Our Services</h4>
+                            {/* <div class="col-lg-3 col-md-6 footer-links">
+                                <h4>Our Vision</h4>
                                 <ul>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Donations</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Employment</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Charity</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="#">Imrove</a></li>
                                     <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
                                 </ul>
-                            </div>
+                            </div> */}
 
-                            <div class="col-lg-4 col-md-6 footer-newsletter">
-                                <h4>Our Newsletter</h4>
-                                <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-
-
-                            </div>
-
+                            
                         </div>
                     </div>
                 </div>
 
                 <div class="container">
                     <div class="copyright">
-                        &copy; Copyright <strong><span>Gp</span></strong>. All Rights Reserved
+                        &copy; Copyright <strong><span>DreamIt</span></strong>. All Rights Reserved
                     </div>
                     <div class="credits">
-                        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        Designed by <a href="https://bootstrapmade.com/">Group 85</a>
                     </div>
                 </div>
             </footer>
