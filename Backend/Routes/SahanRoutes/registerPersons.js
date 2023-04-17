@@ -15,7 +15,7 @@ router.route('/addPerson').post((req, res) => {
 	const position = req.body.position;
 	const idfront = req.body.idfront;
 	const idback = req.body.idback;
-	const policeReport = req.body.policeReport; //create object using cashDel model
+	const policeReport = req.body.policeReport; //create object using register person model
 
 	const newregisterPerson = new registerPerson({
 		//initialized properties
