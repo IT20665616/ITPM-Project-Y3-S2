@@ -25,7 +25,7 @@ router.route("/add").post((req,res) =>{
     const address = req.body.address;
     const lane = req.body.lane;
     const serviceType = req.body.serviceType;
-    const date = req.body.date;
+    const date = String(req.body.date);
     
 
     const newService = new ServiceRequest
@@ -75,20 +75,25 @@ router.route("/update/:id").put(async (req, res) => {
 
     let requestID = req.params.id;
 
-    const { fullName, nic, mobileNo, email, address } = req.body;
+    const { fullName, nic, mobileNo, email, address,lane,serviceType, date} = req.body;
 
     const updateRequest = {
         fullName,
         nic,
         mobileNo,
         email,
-        address
+        address,
+        lane,
+        serviceType,
+        date
+
+
     }
 
     const update = await ServiceRequest.findByIdAndUpdate(requestID, updateRequest)
 
         .then(() => {
-            res.status(200).send({ status: "RequestUpdated Successfully !" })
+            res.status(200).send({ status: "Request Updated Successfully !" })
         }).catch((err) => {
             console.log(err);
             res.status(500).send({ status: "Database couldn't update properly", updateRequest: update })

@@ -37,7 +37,6 @@ const Reqserviceschema = new schema({
     },
     date:{
         type:Date,
-        default: Date.now,
         required:true
     }
 })
