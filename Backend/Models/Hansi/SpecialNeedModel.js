@@ -30,7 +30,8 @@ const SpecialNeedSchema = new Schema({
     description : {
         type : String,
         required : true
-    }
+    },
+
 })
 
 const SpecialNeed = mongoose.model("SpecialNeed", SpecialNeedSchema);

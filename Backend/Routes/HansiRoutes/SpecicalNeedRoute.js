@@ -106,8 +106,8 @@ router.route("/get/:id").get(async (req, res) => {
     let userID = req.params.id;
 
     const special_need = await SpecialNeed.findById(userID)
-        .then((special_need) => {
-            res.status(200).send({ Status: "Special need fetched", SpecialNeed: special_need })
+        .then((SpecialNeed) => {
+            res.status(200).send({ Status: "Special need fetched", SpecialNeed: SpecialNeed })
         }).catch((err) => {
             res.status(500).send({ Status: "Special need fetching unsuccessfull !" });
         })

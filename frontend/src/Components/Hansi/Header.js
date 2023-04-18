@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "../../assets/css/style.css";
 
 // import "./assets/img/portfolio";
@@ -18,7 +18,7 @@ const Header = () => {
 
                     <nav id="navbar" class="navbar order-last order-lg-0">
                         <ul>
-                            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                            <Link to="/"><li><a class="nav-link scrollto active" href="#hero">Home</a></li></Link>
                             <li><a class="nav-link scrollto" href="#about">About</a></li>
                             <li><a class="nav-link scrollto" href="#services">Services</a></li>
                             {/* <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>

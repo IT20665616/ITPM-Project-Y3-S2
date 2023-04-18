@@ -1,7 +1,7 @@
 import React from 'react';
 // import "./assets/css/styles.css"
 // import "./assets/img"
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./stylesheet.css";
 
 const Sidebar = () => {
@@ -26,7 +26,9 @@ const Sidebar = () => {
 
           <div id="navbar" class="sidebar-nav-menu">
             <ul>
-              <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-donate-heart"></i> <span>Home</span></a></li>
+              {/* <Link to=""> */}
+                <li><a href="/searchSpecialNeed" class="nav-link scrollto active"><i class="bx bx-donate-heart"></i> <span>Add Special Needs</span></a></li>
+              {/* </Link> */}
               <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
               <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
               <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>

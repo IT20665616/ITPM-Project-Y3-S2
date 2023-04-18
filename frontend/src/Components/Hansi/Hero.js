@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "../../assets/css/style.css";
 
 // import "./assets/img/portfolio";
@@ -24,7 +24,7 @@ const Hero = () => {
                                 <h3><a href="">Grama Niladhari Registration</a></h3>
                             </div>
                         </div>
-                        
+
                         <div class="col-xl-2 col-md-4">
                             <div class="icon-box">
                                 <i class="ri-question-fill"></i>
@@ -45,12 +45,14 @@ const Hero = () => {
                                 <h3><a href="">Appointments with Grama Niladhari</a></h3>
                             </div>
                         </div>
-                        
+
                         <div class="col-xl-2 col-md-4">
-                            <div class="icon-box">
-                                <i class="ri-service-fill"></i>
-                                <h3><a href="">Hand-In-Need</a></h3>
-                            </div>
+                            <Link to={`/viewSpecialNeed`}>
+                                <div class="icon-box">
+                                    <i class="ri-service-fill"></i>
+                                    <h3><a href="">Hand-In-Need</a></h3>
+                                </div>
+                            </Link>
                         </div>
                     </div>
 

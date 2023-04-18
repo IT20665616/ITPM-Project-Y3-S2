@@ -1,11 +1,12 @@
-import React, { useState, Component } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./Sidebar";
 import swal from "sweetalert";
 import axios from "axios";
 
-function SpecialNeedCreate() {
+function SpecialNeedSingle(prop) {
+
     const [name, setName] = useState("");
     const [phone1, setPhone1] = useState("");
     const [phone2, setPhone2] = useState("");
@@ -13,7 +14,32 @@ function SpecialNeedCreate() {
     const [nic, setNic] = useState("");
     const [description, setDescription] = useState("");
 
-    function sendData(e) {
+    const { id } = useParams();
+
+    useEffect(() => {
+        function getSpecialNeed() {
+            axios
+                .get(`http://localhost:8070/SpecialNeed/get/${id}`)
+                .then((res) => {
+
+                    if (res.data.Status) {
+                        setName(res.data.SpecialNeed.name);
+                        setPhone1(res.data.SpecialNeed.phone1);
+                        setPhone2(res.data.SpecialNeed.phone2);
+                        setAddress(res.data.SpecialNeed.address);
+                        setNic(res.data.SpecialNeed.nic);
+                        setDescription(res.data.SpecialNeed.description);
+                    }
+                })
+                .catch((err) => {
+                    alert(err.message);
+                });
+        }
+        getSpecialNeed();
+    }, []);
+
+
+    function update(e) {
         e.preventDefault();
 
         const newSpecialNeed = {
@@ -26,11 +52,11 @@ function SpecialNeedCreate() {
         };
 
         axios
-            .post("http://localhost:8070/SpecialNeed/add", newSpecialNeed)
+            .put(`http://localhost:8070/SpecialNeed/update/${id}`, newSpecialNeed)
             .then(() => {
                 swal({
                     title: "Success!",
-                    text: "Added Successfully",
+                    text: "UPDATED Successfully",
                     icon: "success",
                     timer: 2000,
                     button: false,
@@ -39,48 +65,74 @@ function SpecialNeedCreate() {
             .catch((err) => {
                 swal({
                     title: "Error!",
-                    text: "Something went wrong..Try Again !",
+                    text: "Coulden't UPDATE your Product",
                     type: "error",
                 });
             });
 
         setTimeout(() => {
-            window.location.replace("http://localhost:3000/addSpecialNeed");
-        }, 2000);
-
-        setName("");
-        setPhone1("");
-        setPhone2("");
-        setAddress("");
-        setNic("");
-        setDescription("");
-
+            window.location.replace("http://localhost:3000/searchSpecialNeed");
+        }, 3000);
 
     }
 
+
+    function deleteSpecialNeed() {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover these details!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then(() => {
+                axios.delete(`http://localhost:8070/SpecialNeed/delete/${id}`);
+                swal({
+                    title: "Success!",
+                    text: "Deleted record Successfully",
+                    icon: "success",
+                    timer: 2500,
+                });
+            })
+            .catch((err) => {
+                swal({
+                    title: "Error!",
+                    text: "Coulden't Delete your Request",
+                    type: "error",
+                });
+            });
+
+        setTimeout(() => {
+            window.location.replace("http://localhost:3000/searchSpecialNeed");
+        }, 3000);
+
+    }
+
+
+
     return (
         <>
-
             <Sidebar />
             <div id="main">
 
-                <form onSubmit={sendData}>
+                <form onSubmit={update}>
 
                     <div class="row m-5">
-                        <h3><b>Create a Special Need</b></h3>
+                        <h3><b>Update Special Need</b></h3>
                     </div>
 
                     <div class="form-group">
                         <div className="row m-5">
                             <div class="col-3">
                                 <label for="name">Full Name of the person who has the special need
-                                    <span style={{ color: "red" }}><sup>*</sup></span></label>
+                                </label>
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="name"
+                                    value={name}
                                     required
                                     placeholder=""
                                     onChange={(e) => {
@@ -94,7 +146,7 @@ function SpecialNeedCreate() {
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="code">Land Line Number<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="code">Land Line Number</label>
                             </div>
 
                             <div class="col-4">
@@ -102,7 +154,7 @@ function SpecialNeedCreate() {
                                     type="text"
                                     class="form-control"
                                     id="phone1"
-                                    required
+                                    value={phone1}
                                     pattern="\d{10}"
                                     placeholder="Ex: 011xxxxxxx"
                                     onChange={(e) => {
@@ -116,14 +168,14 @@ function SpecialNeedCreate() {
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="code">Mobile Number<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="code">Mobile Number</label>
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="phone2"
-                                    required
+                                    value={phone2}
                                     pattern="\d{10}"
                                     placeholder="Ex: 077xxxxxxx"
                                     onChange={(e) => {
@@ -138,7 +190,7 @@ function SpecialNeedCreate() {
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="price">Address<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="price">Address</label>
 
                             </div>
                             <div class="col-4">
@@ -146,7 +198,7 @@ function SpecialNeedCreate() {
                                     class="form-control"
                                     id="address"
                                     rows="3"
-                                    required
+                                    value={address}
                                     onChange={(e) => {
                                         setAddress(e.target.value);
                                     }}
@@ -178,14 +230,14 @@ function SpecialNeedCreate() {
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="price">NIC<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="price">NIC</label>
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="nic"
-                                    required
+                                    value={nic}
                                     onChange={(e) => {
                                         setNic(e.target.value);
                                     }}
@@ -197,14 +249,14 @@ function SpecialNeedCreate() {
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="description" class="form-label">Request<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="description" class="form-label">Request</label>
                             </div>
                             <div class="col-4">
                                 <textarea
                                     class="form-control"
                                     id="description"
                                     rows="3"
-                                    required
+                                    value={description}
                                     onChange={(e) => {
                                         setDescription(e.target.value);
                                     }}
@@ -216,17 +268,17 @@ function SpecialNeedCreate() {
                     <div class="row m-5">
                         <div className="col-1">
                             <Link to={`/searchSpecialNeed`}><button type="submit" class="btn btn-outline-success">
-                            Back
+                                Back
                             </button></Link>
                         </div>
                         <div className="col-2">
                             <button type="submit" class="btn btn-outline-primary">
-                                Create Request
+                                Update Request
                             </button>
                         </div>
                         <div className="col-4">
-                            <button type="reset" class="btn btn-outline-danger">
-                                Clear Form
+                            <button type="button" onClick={() => deleteSpecialNeed()} class="btn btn-outline-danger">
+                                Delete Request
                             </button>
                         </div>
                     </div>
@@ -236,4 +288,4 @@ function SpecialNeedCreate() {
     );
 }
 
-export default SpecialNeedCreate;
+export default SpecialNeedSingle;

@@ -27,6 +27,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./Components/Hansi/GramaNiladhariUI/Sidebar";
 import Header from "./Components/Hansi/Header";
 import HomePage from "./Components/Hansi/HomePage";
+import AddSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedCreate";
+import SearchSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedSearch";
+import SingleSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedSingle";
+import ViewSpecialNeed from "./Components/Hansi/SpecialNeedsView";
+
 
 function App() {
   return (
@@ -34,6 +39,11 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/addSpecialNeed" element={<AddSpecialNeed />} />
+        <Route path="/searchSpecialNeed" element={<SearchSpecialNeed />} />
+        <Route path="/singleSpecialNeed/:id" element={<SingleSpecialNeed />} />
+        <Route path="/viewSpecialNeed" element={<ViewSpecialNeed />} />
+
       </Routes>
     </BrowserRouter>
   )
