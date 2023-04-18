@@ -1,7 +1,11 @@
 import React,{useState} from "react";
 import axios from "axios";
 import swal from "sweetalert";
-export default function Test1(){
+import Sidebar from "../Hansi/GramaNiladhariUI/Sidebar";
+
+
+
+const RegisterPersonForm = () =>{
 
   const [name,set_name]=useState("");
   const [phone,set_phone]=useState("");
@@ -66,6 +70,11 @@ export default function Test1(){
   }
 
     return(
+
+      <> 
+      <Sidebar/>
+
+      <div id="main">
         <div className="container">
 
           
@@ -184,7 +193,11 @@ export default function Test1(){
         </div>
       </form>
       </div>
+      </div>
+      </>
         
     )
 
 }
+
+export default RegisterPersonForm;
