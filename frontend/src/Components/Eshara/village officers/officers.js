@@ -3,6 +3,8 @@ import axios from "axios";
 import swal from "sweetalert";
 import jsPdf from 'jspdf';
 import 'jspdf-autotable';
+import Header from "../../Hansi/Header";
+import Footer from "../../Hansi/Footer";
 
 export default class officers extends Component {
   constructor(props) {
@@ -104,8 +106,11 @@ export default class officers extends Component {
 
   render() {
     return (
+      
       <div className="container">
-        <h1
+        <Header />
+        <br></br><br></br><br></br><br></br>       
+           <h1
           className="text-center"
           style={{
             borderStyle: "solid",
@@ -226,9 +231,13 @@ export default class officers extends Component {
           color: "white", 
           }} onClick={this.jsPdfGenerator}>
             <i className="fas fa-download"></i>&nbsp;Download Details</button>
+            <br></br><br></br><br></br><br></br>          
+              <Footer />
+
       </div>
       
+      
     );
-    
+
   } 
 }
