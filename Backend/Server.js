@@ -13,8 +13,9 @@ const PORT = process.env.PORT || 8070;
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 //app.use(cookieParser());
-app.use(cors());
+
 app.use(bodyParser.json());
+app.use(cors());
 
 const URL = process.env.MONGODB_URL;
 
@@ -39,3 +40,9 @@ app.listen (PORT, () => {
 
 
 //.... comment your route and add it here 
+const router = require("./Routes/EsharaRoutes/officers_route");
+const appointment = require("./Routes/EsharaRoutes/appointments_route");
+
+
+app.use("/officers", router);
+app.use(appointment);
