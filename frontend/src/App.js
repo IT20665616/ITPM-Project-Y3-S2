@@ -30,42 +30,23 @@ function App() {
 
 
         <Route path="/registerperson" element={<RegisterPerson />} />
+        <Route path="/officers" exact Component={ officers } > </Route>
+      <Route path="/officers/add" Component={ registerOfficers  } > </Route>
+      <Route path="/officers/update/:id" Component={editOfficer}></Route>
+      <Route path="/officers/:id" Component={userProfile}></Route>
+    
+      
+
+      <Route path="/appointments" exact Component={ appointments } > </Route>
+      <Route path="/appointments/add" Component={ createAppointments  } > </Route>
+      <Route path="/appointment/update/:id" exact Component={editAppointment}></Route>
+
 
       </Routes>
     </BrowserRouter>
   )
-    <BrowserRouter>
-    <Routes>
- 
-      
-      <Route path="/officers" exact Component={ officers } > </Route>
-      <Route path="/officers/add" Component={ registerOfficers  } > </Route>
-      <Route path="/officers/update/:id" Component={editOfficer}></Route>
-      <Route path="/officers/:id" Component={userProfile}></Route>
     
-      
 
-      <Route path="/appointments" exact Component={ appointments } > </Route>
-      <Route path="/appointments/add" Component={ createAppointments  } > </Route>
-      <Route path="/appointment/update/:id" exact Component={editAppointment}></Route>
-
-
-           
-    </Routes>
-    
-    <Route path="/officers" exact Component={ officers } > </Route>
-      <Route path="/officers/add" Component={ registerOfficers  } > </Route>
-      <Route path="/officers/update/:id" Component={editOfficer}></Route>
-      <Route path="/officers/:id" Component={userProfile}></Route>
-    
-      
-
-      <Route path="/appointments" exact Component={ appointments } > </Route>
-      <Route path="/appointments/add" Component={ createAppointments  } > </Route>
-      <Route path="/appointment/update/:id" exact Component={editAppointment}></Route>
-
-    </BrowserRouter>
-  );
 }
 
 export default App;
