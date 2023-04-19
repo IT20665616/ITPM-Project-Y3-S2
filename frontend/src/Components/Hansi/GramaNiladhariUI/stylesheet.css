@@ -385,7 +385,7 @@ sidebar-section {
 }
 
 .my-container {
-  margin-left: auto;
+  margin-left: (spacer * .5) !important;
   margin-right: auto;
   box-shadow: 0 10px 30px 0px rgba(2, 2, 2, 0.3);
   max-width: 80%;

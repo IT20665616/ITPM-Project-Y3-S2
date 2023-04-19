@@ -28,7 +28,7 @@ function SpecialNeedSearch() {
             <Sidebar />
             <div id="main">
 
-                <div class="container m-5">
+                <div class="container p-5">
                     <div class="row">
                         <h3><b>Special Needs of poor people</b></h3>
                     </div>
@@ -58,7 +58,7 @@ function SpecialNeedSearch() {
                         </button></Link>
                     </div>
 
-                    <table class="table w-75 table-bordered mt-5">
+                    <table class="table w-100 table-bordered mt-5 table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Full Name</th>
@@ -86,7 +86,7 @@ function SpecialNeedSearch() {
                         </tbody>
                     </table>
 
-                    <div class="row mt-5">
+                    <div class="row mt-4">
                         <div className="col-4">
                             <button type="button" class="btn btn-success">
                                 Download PDF
