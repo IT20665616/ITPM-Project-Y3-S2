@@ -1,4 +1,6 @@
-const express=require('express');
+
+const express = require("express");
+
 const mongoose=require("mongoose");
 const bodyParser=require("body-parser");
 const cors = require("cors");
@@ -12,7 +14,7 @@ const PORT = process.env.PORT || 8070;
 
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
-//app.use(cookieParser());
+//app.use(cookieParser());s
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -49,3 +51,11 @@ app.use("/registerPerson",registerPersonroute);
 //SpecialNeeds router
 const specialNeedRouter=require("./Routes/HansiRoutes/SpecicalNeedRoute");
 app.use("/SpecialNeed",specialNeedRouter);
+
+//malshan routes
+//middlewares
+// const RequestServiceRouter=require("../Backend/Routes/MalshanRoutes/Reqservices");
+
+// app.use("/service",RequestServiceRouter);
+const serviceRouter = require("./Routes/MalshanRoutes/Reqservices");
+app.use("/service",serviceRouter);
