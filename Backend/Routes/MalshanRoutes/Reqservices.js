@@ -2,10 +2,9 @@
 const router = require("express").Router();
 //const serviceRoute = require("../../Models/Malshan/service");
 //const { json } = require("express");
-let ServiceRequest = require('../../Models/Malshan/service');
+let ServiceRequest = require("../../Models/Malshan/service");
 
 //const {Service} = require("../../Models/Malshan/service");
-
 
 // router.post("/add", (req,res) =>{
 //     const newservice = new Service(req.body)
@@ -15,41 +14,37 @@ let ServiceRequest = require('../../Models/Malshan/service');
 //         return res.status(200).json({success: true})
 //     })
 
+router.route("/add").post((req, res) => {
+  const fullName = req.body.fullName;
+  const nic = req.body.nic;
+  const mobileNo = Number(req.body.mobileNo);
+  const email = req.body.email;
+  const address = req.body.address;
+  const lane = req.body.lane;
+  const serviceType = req.body.serviceType;
+  const date = String(req.body.date);
 
-    
-router.route("/add").post((req,res) =>{
-    const fullName = req.body.fullName;
-    const nic = req.body.nic;
-    const mobileNo = Number(req.body.mobileNo);
-    const email = req.body.email;
-    const address = req.body.address;
-    const lane = req.body.lane;
-    const serviceType = req.body.serviceType;
-    const date = String(req.body.date);
-    
+  const newService = new ServiceRequest({
+    fullName,
+    nic,
+    mobileNo,
+    email,
+    address,
+    lane,
+    serviceType,
+    date,
+  });
 
-    const newService = new ServiceRequest
-    ({
-        fullName,
-        nic,
-        mobileNo,
-        email,
-        address,
-        lane,
-        serviceType,
-        date
-
+  newService
+    .save()
+    .then(() => {
+      res.json("success");
     })
-
-    newService.save().then(() => {
-        res.json(newService);
-    }).catch((err)=>{
-        console.log(err);
-    })
-
-})
-
-
+    .catch((err) => {
+      res.json(err);
+      console.log(err);
+    });
+});
 
 /***********************/
 //RETRIEVE function
@@ -57,48 +52,57 @@ router.route("/add").post((req,res) =>{
 //we use get method to fetch data from the database
 
 router.route("/").get((req, res) => {
-    ServiceRequest.find().then((Reqservices) => {
-        res.json(Reqservices);
-    }).catch((err) => {
-        console.log(err);
+  ServiceRequest.find()
+    .then((Reqservices) => {
+      res.json(Reqservices);
     })
-})
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 /**********************/
 // UPDATE function
 
 //we are taking the perticuler object id from the url
-//don't forget to put : 
+//don't forget to put :
 //we use put method to update details
 
 router.route("/update/:id").put(async (req, res) => {
+  let requestID = req.params.id;
 
-    let requestID = req.params.id;
+  const { fullName, nic, mobileNo, email, address, lane, serviceType, date } =
+    req.body;
 
-    const { fullName, nic, mobileNo, email, address,lane,serviceType, date} = req.body;
+  const updateRequest = {
+    fullName,
+    nic,
+    mobileNo,
+    email,
+    address,
+    lane,
+    serviceType,
+    date,
+  };
 
-    const updateRequest = {
-        fullName,
-        nic,
-        mobileNo,
-        email,
-        address,
-        lane,
-        serviceType,
-        date
+  const update = await ServiceRequest.findByIdAndUpdate(
+    requestID,
+    updateRequest
+  )
 
-
-    }
-
-    const update = await ServiceRequest.findByIdAndUpdate(requestID, updateRequest)
-
-        .then(() => {
-            res.status(200).send({ status: "Request Updated Successfully !" })
-        }).catch((err) => {
-            console.log(err);
-            res.status(500).send({ status: "Database couldn't update properly", updateRequest: update })
-        })
-})
+    .then(() => {
+      res.status(200).send({ status: "Request Updated Successfully !" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res
+        .status(500)
+        .send({
+          status: "Database couldn't update properly",
+          updateRequest: update,
+        });
+    });
+});
 
 /*******************************/
 
@@ -106,31 +110,73 @@ router.route("/update/:id").put(async (req, res) => {
 //we use delete method to delete data from the database
 
 router.route("/delete/:id").delete(async (req, res) => {
-    let requestId = req.params.id;
+  let requestId = req.params.id;
 
-    await ServiceRequest.findByIdAndDelete(requestId)
-        .then(() => {
-            res.status(200).send({ status: "Request deletion successful !" });
-        }).catch((err) => {
-            console.log(err);
-            res.status(500).send({ status: "Error in deletion" });
-        })
-
-})
+  await ServiceRequest.findByIdAndDelete(requestId)
+    .then(() => {
+      res.status(200).send({ status: "Request deletion successful !" });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ status: "Error in deletion" });
+    });
+});
 
 /******************************/
 // RETRIEVE function (one at a time)
 
 router.route("/get/:id").get(async (req, res) => {
-    let requestId = req.params.id;
+  let requestId = req.params.id;
 
-    const request = await ServiceRequest.findById(requestId)
-        .then((request) => {
-            res.status(200).send({ Status: "Special need fetched", ServiceRequest: request })
-        }).catch((err) => {
-            res.status(500).send({ Status: "Special need fetching unsuccessfull !" });
-        })
-})
+  const request = await ServiceRequest.findById(requestId)
+    .then((request) => {
+      res
+        .status(200)
+        .send({ Status: "Special need fetched", ServiceRequest: request });
+    })
+    .catch((err) => {
+      res.status(500).send({ Status: "Special need fetching unsuccessfull !" });
+    });
+});
 
+//fetch data using NIC
+
+router.route("/get").post(async (req, res) => {
+  try {
+    console.log(req.body)
+    const customer = await ServiceRequest.find({ nic: req.body.nic });
+    if (!customer) {
+      return res.status(400).json({ message: "customer not found" });
+    }
+    res.json(customer);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// const customer = await ServiceRequest.find({ nic: req.body.nic });
+//     if (customer) {
+//     return res.status(400).json({ message: 'Customer already exist with this nic!' });
+//   } else {
+//     customer.save();
+//   }
+
+//   router.route("/getall").get((req, res) => {
+//        const Reqservices =ServiceRequest.find({ nic:  "11111"})
+//        .then((Reqservices) => {
+//         res.status(200).send({ Status: "Special need fetched", ServiceRequest: request })
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// })
+
+// router.get('/employees/:nic', async (req, res) => {
+//     try {
+//       const employees = await ServiceRequest.find({ nic: req.params.nic });
+//       res.status(200).send({ Status: "Special need fetched", ServiceRequest: request })
+//     } catch (error) {
+//       res.status(500).json({ message: 'Server error' });
+//     }
+//   });
 
 module.exports = router;
