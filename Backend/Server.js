@@ -41,6 +41,10 @@ app.listen (PORT, () => {
 
 
 //.... comment your route and add it here 
+const  registerPersonroute=require("./Routes/SahanRoutes/registerPersons");
+app.use("/registerPerson",registerPersonroute);
+
+
 
 //SpecialNeeds router
 const specialNeedRouter=require("./Routes/HansiRoutes/SpecicalNeedRoute");
