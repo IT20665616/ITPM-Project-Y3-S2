@@ -33,11 +33,12 @@ const Hero = () => {
                             </a>
                         </div>
 
-                        <div class="col-xl-2 col-md-4">
+                        <div class="col-xl-2 col-md-4"><a href="http://localhost:3000/nic">
                             <div class="icon-box">
                                 <i class="ri-file-list-2-fill"></i>
-                                <h3><a href="">My Job Requests</a></h3>
+                                <h3>My Job Requests</h3>
                             </div>
+                            </a>
                         </div>
 
                         <div class="col-xl-2 col-md-4">
