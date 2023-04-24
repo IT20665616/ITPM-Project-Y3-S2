@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import swal from "sweetalert";
 import axios from "axios";
-import Sidebar from "../Hansi/GramaNiladhariUI/Sidebar";
+// import Sidebar from "../Hansi/GramaNiladhariUI/Sidebar";
 
 function CustomerCreate() {
   const [fullName, setfullName] = useState("");
@@ -11,7 +11,7 @@ function CustomerCreate() {
   const [address, setAddress] = useState("");
   const [lane, setLane] = useState("");
   const [serviceType, setserviceType] = useState("");
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
 
   function sendData(e) {
     e.preventDefault();
@@ -74,7 +74,7 @@ function CustomerCreate() {
 
   return (
 <div>
-    <Sidebar/>
+    
     <div className="container shadow my-5  col-md-5 d-flex  align-items-center  justify-content-center form order-2">
       <form>
         <div className="form-group">
