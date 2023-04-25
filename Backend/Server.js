@@ -49,3 +49,7 @@ app.use("/registerPerson",registerPersonroute);
 //SpecialNeeds router
 const specialNeedRouter=require("./Routes/HansiRoutes/SpecicalNeedRoute");
 app.use("/SpecialNeed",specialNeedRouter);
+
+//Donator router
+const DonatorRouter=require("./Routes/HansiRoutes/DonatorRoute");
+app.use("/donator",DonatorRouter);
