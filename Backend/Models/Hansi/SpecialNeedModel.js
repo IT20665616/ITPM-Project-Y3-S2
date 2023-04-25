@@ -45,7 +45,6 @@ const SpecialNeedSchema = new Schema({
         type : String,
         required : true
     }
-
 })
 
 const SpecialNeed = mongoose.model("SpecialNeed", SpecialNeedSchema);

@@ -8,8 +8,7 @@ import swal from "sweetalert";
 
 
 function SpecialNeedsView() {
-    const [specialNeed, setSpecialNeeds] = useState([]);
-    const status = "Accepted";
+
 
     useEffect(() => {
         function getSpecialNeeds() {
@@ -26,22 +25,17 @@ function SpecialNeedsView() {
     }, []);
 
 
-    
+
     const [name, setName] = useState("");
     const [phone1, setPhone1] = useState("");
     const [phone2, setPhone2] = useState("");
     const [address, setAddress] = useState("");
     const [email, setEmail] = useState("");
+    const [specialNeed, setSpecialNeeds] = useState([]);
+    const status = "Accepted";
 
 
     function sendData(specialNeedRef) {
-
-        const newSpecialNeed = {
-            status
-        };
-
-        axios
-            .put(`http://localhost:8070/SpecialNeed/update/status/${specialNeedRef}`, newSpecialNeed)
 
         const newDonator = {
             specialNeedRef,
@@ -51,6 +45,7 @@ function SpecialNeedsView() {
             address,
             email
         };
+
 
         axios
             .post("http://localhost:8070/donator/add", newDonator)
@@ -62,7 +57,7 @@ function SpecialNeedsView() {
                     timer: 2000,
                     button: false,
                 });
-                
+
             })
             .catch((err) => {
                 swal({
@@ -72,9 +67,19 @@ function SpecialNeedsView() {
                 });
             });
 
-            setTimeout(() => {
-                window.location.reload();
-            }, 2000);
+
+        //update special need document
+        const newSpecialNeed = {
+            status,
+        };
+
+        axios
+            .put(`http://localhost:8070/SpecialNeed/update/status/${specialNeedRef}`, newSpecialNeed)
+
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000);
 
 
         setName("");
@@ -241,10 +246,10 @@ function SpecialNeedsView() {
                                                         <div class="w3-container w3-border-top w3-padding-16 w3-light-grey"  >
                                                             <div className="row justify-content-between">
                                                                 <div className="col-3">
-                                                                    <button onClick={() => document.getElementById('id01').style.display = 'none'} type="button" class="w3-button w3-red" style={{borderRadius:"5px"}}>Cancel</button>
+                                                                    <button onClick={() => document.getElementById('id01').style.display = 'none'} type="button" class="w3-button w3-red" style={{ borderRadius: "5px" }}>Cancel</button>
                                                                 </div>
                                                                 <div className="col-3">
-                                                                    <button onClick={() => sendData(val._id)} type="button" class="w3-button w3-green" style={{borderRadius:"5px"}}>Send</button>
+                                                                    <button onClick={() => sendData(val._id)} type="button" class="w3-button w3-green" style={{ borderRadius: "5px" }}>Send</button>
                                                                 </div>
                                                             </div>
 

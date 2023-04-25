@@ -99,11 +99,7 @@ router.route("/update/:id").put(async (req, res) => {
 
 
 /******************************************************************/
-// UPDATE function
-
-//we are taking the perticuler object id from the url
-//don't forget to put : 
-//we use put method to update details
+// UPDATE status and donator ref function
 
 router.route("/update/status/:id").put(async (req, res) => {
 
@@ -112,7 +108,7 @@ router.route("/update/status/:id").put(async (req, res) => {
     const status = req.body.status;
 
     const updateSpecialNeed = {
-        status
+        status,
     }
 
     const update = await SpecialNeed.findByIdAndUpdate(userID, updateSpecialNeed)
