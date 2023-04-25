@@ -1,23 +1,34 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
-//import Sidebar from '../Hansi/GramaNiladhariUI/Sidebar';
+import '../Sahan/StyleSheet.css';
+import '../Sahan/FormStyles.css';
 
-const RegisterPersonForm = () => {
-	const [name, set_name] = useState('');
-	const [phone, set_phone] = useState('');
-	const [inputAddress, setinputAddress] = useState('');
-	const [inputAddress2, setinputAddress2] = useState('');
-	const [village, set_village] = useState('');
-	const [position, set_position] = useState('');
-	const [idfront, set_idfront] = useState('');
-	const [idback, set_idback] = useState('');
-	const [policeReport, set_policeReport] = useState('');
+export default function RegisterForum() {
+	const [name, set_name] = useState("");
+	const [phone, set_phone] = useState("");
+	const [inputAddress, setinputAddress] = useState("");
+	const [inputAddress2, setinputAddress2] = useState("");
+	const [village, set_village] = useState("");
+	const [position, set_position] = useState("");
+	const [idfront, set_idfront] = useState("");
+	const [idback, set_idback] = useState("");
+	const [policeReport, set_policeReport] = useState("");
 	const sendData = async (e) => {
 		e.preventDefault();
 
-		let registerPerson = {
-			name: name,
+		const NregisterPerson = {
+			name,
+			phone,
+			inputAddress,
+			inputAddress2,
+			village,
+			position,
+			idfront,
+			idback,
+			policeReport
+			/*name: name,
 			phone: phone,
 			inputAddress: inputAddress,
 			inputAddress2: inputAddress2,
@@ -25,13 +36,12 @@ const RegisterPersonForm = () => {
 			position: position,
 			idfront: idfront,
 			idback: idback,
-			policeReport: policeReport
+			policeReport: policeReport*/
 		};
 
+		// backend url=== http://localhost:8070/registerPerson/addPerson
 		axios.post(
-			'http://localhost:8070/registerPerson/addPerson',
-			registerPerson
-		)
+			"http://localhost:8070/registerPerson/addPerson", NregisterPerson)  
 			.then(() => {
 				swal({
 					title: 'Success!',
@@ -40,87 +50,90 @@ const RegisterPersonForm = () => {
 					timer: 200,
 					button: false
 				});
-
-				window.location = '/cashupdate';
 			})
 			.catch((err) => {
-				alert('error in cash del frontend route');
+				alert('error in registerPerson frontend route');
 			});
-
-		set_name('');
-		set_phone('');
-		setinputAddress('');
-		setinputAddress2('');
-		set_village('');
-		set_position('');
-		set_idfront('');
-		set_idback('');
-		set_policeReport('');
+			//set values default
+		set_name("");
+		set_phone("");
+		setinputAddress("");
+		setinputAddress2("");
+		set_village("");
+		set_position("");
+		set_idfront("");
+		set_idback("");
+		set_policeReport("");
 	};
 
 	return (
 		<>
-			<div id='main'>
-				<div className='container'>
-					<div className='container'>
-						<h1>person registration Details</h1>
-					</div>
-
-					<form onSubmit={sendData} className='row g-3'>
-						<div className='col-md-6'>
-							<label
-								htmlFor='d_cus'
-								className='form-label'
-							>
-								person name
+			
+				<section className='Payment-form '>
+					<br />
+					<Link to='/update'>
+						<button className='btnf'>
+							<span>See all employee details</span>
+						</button>
+					</Link>
+					<br />
+					<br />
+					<h3>Add a new employee</h3>
+					<br />
+					<form onSubmit={sendData}>
+						<div className='mb-3'>
+							<label htmlFor='name' className='form-label'>
+								person's name
 							</label>
 							<input
 								type='text'
 								className='form-control'
 								id='name'
+								placeholder="person's name"
 								onChange={(e) => {
 									set_name(e.target.value);
-									//we use onchange to take input when the input is submmitin g
 								}}
 							/>
 						</div>
 
-						<div className='col-md-6'>
+						<div className='mb-3'>
 							<label
 								htmlFor='phone'
 								className='form-label'
 							>
-								employee phone number
+								phone number
 							</label>
 							<input
 								type='text'
 								className='form-control'
 								id='phone'
+								placeholder='enter phone number'
 								onChange={(e) => {
 									set_phone(e.target.value);
 								}}
+								//pattern='[0-9]{10}'
+								required
 							/>
 						</div>
-
-						<div className='col-12'>
+						<div className='mb-3'>
 							<label
 								htmlFor='inputAddress'
 								className='form-label'
 							>
-								Address
+								Address 1
 							</label>
 							<input
 								type='text'
 								className='form-control'
 								id='inputAddress'
-								placeholder='1234 Main St'
+								placeholder='enter Address 1'
 								onChange={(e) => {
 									setinputAddress(e.target.value);
 								}}
+								required
 							/>
 						</div>
-
-						<div className='col-12'>
+						<div className='mb-3'>
 							<label
 								htmlFor='inputAddress2'
 								className='form-label'
@@ -131,14 +144,15 @@ const RegisterPersonForm = () => {
 								type='text'
 								className='form-control'
 								id='inputAddress2'
-								placeholder='Apartment, studio, or floor'
+								placeholder='enter Address 2'
 								onChange={(e) => {
 									setinputAddress2(e.target.value);
 								}}
+								required
 							/>
 						</div>
 
-						<div className='col-md-6'>
+						<div className='mb-3'>
 							<label
 								htmlFor='village'
 								className='form-label'
@@ -149,13 +163,15 @@ const RegisterPersonForm = () => {
 								type='text'
 								className='form-control'
 								id='village'
+								placeholder='enter village'
 								onChange={(e) => {
 									set_village(e.target.value);
 								}}
+								required
 							/>
 						</div>
 
-						<div className='col-md-4'>
+						<div className='mb-3'>
 							<label
 								htmlFor='position'
 								className='form-label'
@@ -166,79 +182,83 @@ const RegisterPersonForm = () => {
 								type='text'
 								className='form-control'
 								id='position'
+								placeholder='enter job position'
 								onChange={(e) => {
 									set_position(e.target.value);
 								}}
+								required
 							/>
 						</div>
 
-						<div className='col-md-2'>
+						<div className='mb-3'>
 							<label
-								htmlFor='inputZip'
+								htmlFor='idfront'
 								className='form-label'
 							>
-								add NIC front photo
+								NIC front photo
 							</label>
 							<input
 								type='text'
 								className='form-control'
 								id='idfront'
+								placeholder='add NIC front photo'
 								onChange={(e) => {
 									set_idfront(e.target.value);
 								}}
+								required
 							/>
 						</div>
 
-						<div className='col-md-2'>
+						<div className='mb-3'>
 							<label
-								htmlFor='inputZip'
+								htmlFor='idback'
 								className='form-label'
 							>
-								add NIC back photo
+								NIC back photo
 							</label>
 							<input
 								type='text'
 								className='form-control'
 								id='idback'
+								placeholder='add NIC back photo'
 								onChange={(e) => {
 									set_idback(e.target.value);
 								}}
+								required
 							/>
 						</div>
 
-						<div className='col-md-2'>
+						<div className='mb-3'>
 							<label
-								htmlFor='inputZip'
+								htmlFor='policeReport'
 								className='form-label'
 							>
-								add police report photo
+								police report photo
 							</label>
 							<input
 								type='text'
 								className='form-control'
 								id='policeReport'
+								placeholder='add police report photo'
 								onChange={(e) => {
 									set_policeReport(e.target.value);
 								}}
+								required
 							/>
 						</div>
 
-						<div className='col-12'>
+						<div>
 							<center>
-								{' '}
 								<button
-									type='submit'
+									type="submit"
 									className='btn btn-primary'
 								>
-									proceed details
+									register employee
 								</button>
 							</center>
 						</div>
 					</form>
-				</div>
-			</div>
+				</section>
 		</>
 	);
-};
-
-export default RegisterPersonForm;
+}

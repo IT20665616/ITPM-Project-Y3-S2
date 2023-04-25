@@ -4,7 +4,7 @@ const { findByIdAndUpdate } = require('../../Models/Sahan/registerPerson');
 let registerPerson = require('../../Models/Sahan/registerPerson'); //import registerPerson.js model
 
 //add crud operation routers
-
+// backend url=== http://localhost:8070/registerPerson/addPerson
 router.route('/addPerson').post((req, res) => {
 	//create variables for  schema
 	const name = req.body.name;
@@ -28,19 +28,19 @@ router.route('/addPerson').post((req, res) => {
 		idfront,
 		idback,
 		policeReport
-	});
+	})
 	//pass the data to database using our previous created newregisterPerson object
 	//js promise
 	//pass data to database
 	newregisterPerson
 		.save()
 		.then(() => {
-			res.json('person details added');
+			res.json("person details added");
 			//res.jason=sent respond in jason method
 		})
 		.catch((err) => {
 			console.log(err);
-			console.log('error of adding person details');
+			console.log("error of adding person details");
 		});
 });
 //fetch all data from all users
