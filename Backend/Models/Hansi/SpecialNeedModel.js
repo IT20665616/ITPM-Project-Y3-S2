@@ -39,6 +39,11 @@ const SpecialNeedSchema = new Schema({
 
     status : {
         type : String
+    },
+
+    amount : {
+        type : String,
+        required : true
     }
 
 })

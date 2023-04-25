@@ -25,7 +25,8 @@ router.route("/add").post((req, res) => {
     const nic = req.body.nic;
     const createdDate = currentDate;
     const description = req.body.description;
-    const status = 0;
+    const status = "Pending";
+    const amount = req.body.amount;
 
     const newSpecialNeedObject = new SpecialNeed({
         name,
@@ -35,7 +36,8 @@ router.route("/add").post((req, res) => {
         nic,
         createdDate,
         description,
-        status
+        status,
+        amount
     })
 
     newSpecialNeedObject.save().then(() => {
@@ -73,7 +75,7 @@ router.route("/update/:id").put(async (req, res) => {
 
     let userID = req.params.id;
 
-    const { name, phone1, phone2, address, nic, description } = req.body;
+    const { name, phone1, phone2, address, nic, description,amount } = req.body;
 
     const updateSpecialNeed = {
         name,
@@ -81,7 +83,8 @@ router.route("/update/:id").put(async (req, res) => {
         phone2,
         address,
         nic,
-        description
+        description,
+        amount
     }
 
     const update = await SpecialNeed.findByIdAndUpdate(userID, updateSpecialNeed)
@@ -161,6 +164,20 @@ router.route("/search/:createdDate").get(async (req, res) => {
     try {
         console.log(req.body)
         const special_need = await SpecialNeed.find({createdDate: req.params.createdDate});
+        if (!special_need) {
+          return res.status(400).json({ message: 'customer not found' });
+        }
+        res.json(special_need);
+      } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+      }
+
+})
+
+
+router.route("/pending").get(async (req, res) => {
+    try {
+        const special_need = await SpecialNeed.find({status: "Pending"});
         if (!special_need) {
           return res.status(400).json({ message: 'customer not found' });
         }

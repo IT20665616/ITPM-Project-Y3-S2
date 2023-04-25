@@ -12,6 +12,8 @@ function SpecialNeedCreate() {
     const [address, setAddress] = useState("");
     const [nic, setNic] = useState("");
     const [description, setDescription] = useState("");
+    const [amount, setAmount] = useState("");
+
 
     function sendData(e) {
         e.preventDefault();
@@ -22,7 +24,8 @@ function SpecialNeedCreate() {
             phone2,
             address,
             nic,
-            description
+            description,
+            amount
         };
 
         axios
@@ -54,7 +57,7 @@ function SpecialNeedCreate() {
         setAddress("");
         setNic("");
         setDescription("");
-
+        setAmount("");
 
     }
 
@@ -155,26 +158,6 @@ function SpecialNeedCreate() {
                         </div>
                     </div>
 
-
-                    {/* <div class="form-check">
-                        <div class="row m-5">
-                            <div class="col-3">
-                                <label class="form-check-label" for="exampleRadios1">Have an NIC (Age above 18)</label>
-                            </div>
-                            <div class="col-4">
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="exampleRadios"
-                                    id="exampleRadios1"
-                                    value="1"
-                                    checked
-                                    onChange={ } />
-                            </div>
-                        </div>
-                    </div> */}
-
-
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
@@ -213,10 +196,28 @@ function SpecialNeedCreate() {
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">Amount (LKR)<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nic"
+                                    required
+                                    onChange={(e) => {
+                                        setAmount(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <div class="row m-5">
                         <div className="col-1">
                             <Link to={`/searchSpecialNeed`}><button type="submit" class="btn btn-outline-success">
-                            Back
+                                Back
                             </button></Link>
                         </div>
                         <div className="col-2">

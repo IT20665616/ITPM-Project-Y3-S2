@@ -13,6 +13,8 @@ function SpecialNeedSingle(prop) {
     const [address, setAddress] = useState("");
     const [nic, setNic] = useState("");
     const [description, setDescription] = useState("");
+    const [amount, setAmount] = useState("");
+
 
     const { id } = useParams();
 
@@ -29,6 +31,7 @@ function SpecialNeedSingle(prop) {
                         setAddress(res.data.SpecialNeed.address);
                         setNic(res.data.SpecialNeed.nic);
                         setDescription(res.data.SpecialNeed.description);
+                        setAmount(res.data.SpecialNeed.amount);
                     }
                 })
                 .catch((err) => {
@@ -48,7 +51,8 @@ function SpecialNeedSingle(prop) {
             phone2,
             address,
             nic,
-            description
+            description,
+            amount
         };
 
         axios
@@ -207,26 +211,6 @@ function SpecialNeedSingle(prop) {
                         </div>
                     </div>
 
-
-                    {/* <div class="form-check">
-                        <div class="row m-5">
-                            <div class="col-3">
-                                <label class="form-check-label" for="exampleRadios1">Have an NIC (Age above 18)</label>
-                            </div>
-                            <div class="col-4">
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="exampleRadios"
-                                    id="exampleRadios1"
-                                    value="1"
-                                    checked
-                                    onChange={ } />
-                            </div>
-                        </div>
-                    </div> */}
-
-
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
@@ -259,6 +243,26 @@ function SpecialNeedSingle(prop) {
                                     value={description}
                                     onChange={(e) => {
                                         setDescription(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="description" class="form-label">Amount</label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="description"
+                                    rows="3"
+                                    value={amount}
+                                    onChange={(e) => {
+                                        setAmount(e.target.value);
                                     }}
                                 />
                             </div>

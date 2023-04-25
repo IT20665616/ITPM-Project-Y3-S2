@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./Header";
 import Footer from "./Footer";
+import swal from "sweetalert";
 
 
 function SpecialNeedsView() {
     const [specialNeed, setSpecialNeeds] = useState([]);
+    const status = "Accepted";
 
     useEffect(() => {
         function getSpecialNeeds() {
             axios
-                .get("http://localhost:8070/SpecialNeed")
+                .get("http://localhost:8070/SpecialNeed/pending")
                 .then((res) => {
                     setSpecialNeeds(res.data);
                 })
@@ -22,6 +24,39 @@ function SpecialNeedsView() {
         }
         getSpecialNeeds();
     }, []);
+
+
+
+    function sendFeedback(id) {
+
+        const newSpecialNeed = {
+            status
+        };
+
+        axios
+            .put(`http://localhost:8070/SpecialNeed/update/status/${id}`, newSpecialNeed)
+            .then(() => {
+                swal({
+                    title: "Feedback Sent !",
+                    text: "Plese Wait for a response from the Grama Niladhari",
+                    icon: "success",
+                    timer: 2000,
+                    button: false,
+                });
+            })
+            .catch((err) => {
+                swal({
+                    title: "Error!",
+                    text: err,
+                    type: "error",
+                });
+            });
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000);
+
+    }
 
     return (
         <>
@@ -45,6 +80,8 @@ function SpecialNeedsView() {
                                     <th scope="col">Mobile Number</th>
                                     <th scope="col">NIC</th>
                                     <th scope="col">Special Request</th>
+                                    <th scope="col">Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,6 +95,13 @@ function SpecialNeedsView() {
                                             <td>{val.phone1}</td>
                                             <td>{val.nic}</td>
                                             <td>{val.description}</td>
+                                            <td align="center">
+                                                <button type="reset" class="btn btn-outline-primary" onClick={() => sendFeedback(val._id)}>
+                                                    Accept to help
+                                                </button>
+                                                {/* <Link to={`/singleSpecialNeed/${val._id}`}>
+                                                    <i class="ri-eye-fill"></i></Link> */}
+                                            </td>
                                         </tr>
                                     );
                                 })}

@@ -2,13 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import jspdf from 'jspdf';
+import 'jspdf-autotable';
 import Sidebar from "./Sidebar";
-import swal from "sweetalert";
 
 
 export default function SpecialNeedSearch() {
     const [specialNeed, setSpecialNeeds] = useState([]);
     const [searchDate, setSearchDate] = useState("");
+    const [searchStatus, setSearchStatus] = useState("");
+
 
     useEffect(() => {
         function getSpecialNeeds() {
@@ -24,13 +27,42 @@ export default function SpecialNeedSearch() {
         getSpecialNeeds();
     }, []);
 
-    function filterRequestsByDate(specialNeed, searchDate) {
-        if (searchDate !== '') {
+    function filterRequestsByDate(specialNeed, searchDate, searchStatus) {
+        if (searchDate !== '' && searchStatus !== '') {
+            return specialNeed.filter((val) => val.createdDate === searchDate && val.status === searchStatus);
+        }
+        else if (searchDate !== '' && searchStatus === '') {
             return specialNeed.filter((val) => val.createdDate === searchDate);
+        }
+        else if (searchDate === '' && searchStatus !== '') {
+            return specialNeed.filter((val) => val.status === searchStatus);
         }
         return specialNeed;
     }
-    const filteredRequests = filterRequestsByDate(specialNeed, searchDate);
+    const filteredRequests = filterRequestsByDate(specialNeed, searchDate, searchStatus);
+
+    // pdf generating
+    function jsPdfgenerator() {
+
+        //new document in jspdf
+        var doc = new jspdf('p', 'pt');
+        const tableRows = filteredRequests.map((val) => [
+            val.name,
+            val.address,
+            val.phone2,
+            val.description,
+            val.createdDate
+        ]);
+
+        doc.autoTable({
+            head: [['Full Name', 'Address', 'Mobile', 'Request', 'Date']],
+            body: tableRows,
+            margin: { top: 50 },
+            columnStyles: { europe: { halign: 'center' } }
+        });
+
+        doc.save("Special Needs Requests List.pdf");
+    }
 
     return (
         <>
@@ -44,7 +76,7 @@ export default function SpecialNeedSearch() {
 
                     <div class="row mt-5">
                         <div class="col-3">
-                            <label for="search">Enter the created date</label>
+                            <label for="search">Search by Date</label>
                         </div>
                         <div class="col-3">
                             <input type="date"
@@ -53,6 +85,32 @@ export default function SpecialNeedSearch() {
                                     setSearchDate(e.target.value);
                                 }}
                             />
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+
+                        <div class="col-3">
+                            <label className="form-label">
+                                Search by Status
+                            </label>
+                        </div>
+                        <div class="col-3">
+                            <div className="form-group">
+
+                                <select
+                                    className="form-select"
+                                    name="occupation"
+                                    onChange={(e) => {
+                                        setSearchStatus(e.target.value);
+                                    }}
+                                >
+                                    <option disabled={true} value="" selected hidden>
+                                        --Choose Status--
+                                    </option>
+                                    <option value="Pending"> Pending</option>
+                                    <option value="Accepted">Accepted</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
@@ -70,14 +128,15 @@ export default function SpecialNeedSearch() {
                         </button></Link>
                     </div>
 
-                    <table class="table w-100 table-bordered mt-5 table-responsive">
+                    <table id="my-table" class="table w-100 table-bordered mt-5 table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Full Name</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Mobile Number</th>
-                                <th scope="col">CreatedDate</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Request</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,46 +144,24 @@ export default function SpecialNeedSearch() {
                                 return (
                                     <tr>
                                         <th>{val.name}</th>
-                                        <td>{val.address}</td>
-                                        <td>{val.phone2}</td>
+                                        <td>{val.description}</td>
+                                        <td>{val.amount}</td>
+                                        <td>{val.status}</td>
                                         <td>{val.createdDate}</td>
-                                        <td>
-                                            <Link to={`/singleSpecialNeed/${val._id}`}><button type="submit" class="btn btn-outline-primary">
-                                                View Details
-                                            </button></Link>
+
+                                        <td align="center">
+                                            <Link to={`/singleSpecialNeed/${val._id}`}>
+                                                < i class="ri-eye-fill"></i></Link>
                                         </td>
                                     </tr>
                                 );
                             })}
-                            {/* 
-                            {(() => {
-                                if (click === true) {
-                                    return (
-                                        <div>
-                                            {searchData.map((val, key) => {
-                                                return (
-                                                    <tr>
-                                                        <th>{val.name}</th>
-                                                        <td>{val.address}</td>
-                                                        <td>{val.phone2}</td>
-                                                        <td>{val.createdDate}</td>
-                                                        <td>
-                                                            <Link to={`/singleSpecialNeed/${val._id}`}><button type="submit" class="btn btn-outline-primary">
-                                                                View Details
-                                                            </button></Link>
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </div>
-                                    )
-                                } */}
                         </tbody>
                     </table>
 
                     <div class="row mt-4">
                         <div className="col-4">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success" onClick={() => jsPdfgenerator()}>
                                 Download PDF
                             </button>
                         </div>
