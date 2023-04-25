@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./Sidebar";
 import swal from "sweetalert";
 
 
-function SpecialNeedSearch() {
+export default function SpecialNeedSearch() {
     const [specialNeed, setSpecialNeeds] = useState([]);
+    const [searchDate, setSearchDate] = useState("");
 
     useEffect(() => {
         function getSpecialNeeds() {
@@ -22,6 +23,14 @@ function SpecialNeedSearch() {
         }
         getSpecialNeeds();
     }, []);
+
+    function filterRequestsByDate(specialNeed, searchDate) {
+        if (searchDate !== '') {
+            return specialNeed.filter((val) => val.createdDate === searchDate);
+        }
+        return specialNeed;
+    }
+    const filteredRequests = filterRequestsByDate(specialNeed, searchDate);
 
     return (
         <>
@@ -40,14 +49,17 @@ function SpecialNeedSearch() {
                         <div class="col-3">
                             <input type="date"
                                 class="form-control"
+                                onChange={(e) => {
+                                    setSearchDate(e.target.value);
+                                }}
                             />
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div className="col-4">
-                            <button type="reset" class="btn btn-outline-primary">
-                                Search
+                            <button type="reset" class="btn btn-outline-primary" onClick={() => window.location.reload(true)}>
+                                Reset
                             </button>
                         </div>
                     </div>
@@ -64,17 +76,18 @@ function SpecialNeedSearch() {
                                 <th scope="col">Full Name</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Mobile Number</th>
+                                <th scope="col">CreatedDate</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            {specialNeed.map((val, key) => {
+                            {filteredRequests.map((val, key) => {
                                 return (
                                     <tr>
                                         <th>{val.name}</th>
                                         <td>{val.address}</td>
                                         <td>{val.phone2}</td>
+                                        <td>{val.createdDate}</td>
                                         <td>
                                             <Link to={`/singleSpecialNeed/${val._id}`}><button type="submit" class="btn btn-outline-primary">
                                                 View Details
@@ -83,6 +96,29 @@ function SpecialNeedSearch() {
                                     </tr>
                                 );
                             })}
+                            {/* 
+                            {(() => {
+                                if (click === true) {
+                                    return (
+                                        <div>
+                                            {searchData.map((val, key) => {
+                                                return (
+                                                    <tr>
+                                                        <th>{val.name}</th>
+                                                        <td>{val.address}</td>
+                                                        <td>{val.phone2}</td>
+                                                        <td>{val.createdDate}</td>
+                                                        <td>
+                                                            <Link to={`/singleSpecialNeed/${val._id}`}><button type="submit" class="btn btn-outline-primary">
+                                                                View Details
+                                                            </button></Link>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </div>
+                                    )
+                                } */}
                         </tbody>
                     </table>
 
@@ -101,5 +137,3 @@ function SpecialNeedSearch() {
         </>
     );
 }
-
-export default SpecialNeedSearch;
