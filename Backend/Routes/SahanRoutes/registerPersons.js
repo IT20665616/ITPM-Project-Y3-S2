@@ -28,19 +28,20 @@ router.route('/addPerson').post((req, res) => {
 		idfront,
 		idback,
 		policeReport
-	})
+	});
 	//pass the data to database using our previous created newregisterPerson object
 	//js promise
 	//pass data to database
 	newregisterPerson
 		.save()
 		.then(() => {
-			res.json("person details added");
+			res.json(newregisterPerson);
+			res.json('person details added');
 			//res.jason=sent respond in jason method
 		})
 		.catch((err) => {
 			console.log(err);
-			console.log("error of adding person details");
+			console.log('error of adding person details');
 		});
 });
 //fetch all data from all users

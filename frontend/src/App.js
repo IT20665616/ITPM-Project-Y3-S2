@@ -6,8 +6,10 @@ import Sidebar from "./Components/Hansi/GramaNiladhariUI/Sidebar";
 //import Header from "./Components/Hansi/Header";
 import HomePage from "./Components/Hansi/HomePage";
 //import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
-import RegisterForum from "./Components/Sahan/RegisterForum";
+import RegisterForum from "./Components/Sahan/RegisterPersonForm";
 import EditRegisterForm from "./Components/Sahan/EditRegisterForm";
+import RegisterUpdate from "./Components/Sahan/RegisterUpdate";
+
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +19,7 @@ function App() {
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/editforum" element={<EditRegisterForm/>} />
         <Route path="/take" element={<RegisterForum/>} />
+        <Route path="/resup" element={<RegisterUpdate/>}/>
       </Routes>
     </BrowserRouter>
   )

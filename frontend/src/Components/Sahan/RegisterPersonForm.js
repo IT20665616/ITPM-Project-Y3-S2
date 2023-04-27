@@ -1,244 +1,290 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import swal from 'sweetalert';
+import Sidebar  from "../Hansi/GramaNiladhariUI/Sidebar";
 //import Sidebar from '../Hansi/GramaNiladhariUI/Sidebar';
+//get forum data
+function RegisterPersonForm() {
 
-const RegisterPersonForm = () => {
-	const [name, set_name] = useState('');
-	const [phone, set_phone] = useState('');
-	const [inputAddress, setinputAddress] = useState('');
-	const [inputAddress2, setinputAddress2] = useState('');
-	const [village, set_village] = useState('');
-	const [position, set_position] = useState('');
-	const [idfront, set_idfront] = useState('');
-	const [idback, set_idback] = useState('');
-	const [policeReport, set_policeReport] = useState('');
-	const sendData = async (e) => {
-		e.preventDefault();
+	const [name, setName] = useState([]);
+    const [phone, setPhone] = useState([]);
+    const [address, setAddress] = useState([]);
+    const [address2, setAddress2] = useState([]);
+    const [village, setVillage] = useState([]);
+    const [position, setPosition] = useState([]);
+    const [idfront, setIdFront] = useState([]);
+	const [idback, setIdBack] = useState([]);
+	const [policeReport, setPoliceReport] = useState([]);
 
-		let registerPerson = {
-			name: name,
-			phone: phone,
-			inputAddress: inputAddress,
-			inputAddress2: inputAddress2,
-			village: village,
-			position: position,
-			idfront: idfront,
-			idback: idback,
-			policeReport: policeReport
-		};
 
-		axios.post(
-			'http://localhost:8070/registerPerson/addPerson',
-			registerPerson
-		)
-			.then(() => {
-				swal({
-					title: 'Success!',
-					text: 'Add Employee Details Successfully',
-					icon: 'success',
-					timer: 200,
-					button: false
-				});
+    function sendData(e) {
+        e.preventDefault();
 
-				window.location = '/cashupdate';
-			})
-			.catch((err) => {
-				alert('error in cash del frontend route');
-			});
+        const newEmployee = {
+            name,
+            phone,
+            address,
+            address2,
+			village,
+			position,
+            idfront,
+            idback,
+            policeReport
+        };
 
-		set_name('');
-		set_phone('');
-		setinputAddress('');
-		setinputAddress2('');
-		set_village('');
-		set_position('');
-		set_idfront('');
-		set_idback('');
-		set_policeReport('');
-	};
+        axios
+            .post("http://localhost:8070/registerPerson/addPerson", newEmployee)
+            .then((res) => {
+				console.log(res.data);
+                swal({
+                    title: "Success!",
+                    text: "Added Successfully",
+                    icon: "success",
+                    timer: 2000,
+                    button: false,
+                });
+            })
+            .catch((err) => {
+                swal({
+                    title: "Error!",
+                    text: "Something went wrong..Try Again !",
+                    type: "error",
+                });
+            });
+
+        // setTimeout(() => {
+        //     window.location.replace("http://localhost:3000/addSpecialNeed");
+        // }, 2000);
+
+        setName([]);
+        setPhone([]);
+        setAddress([]);
+        setAddress2([]);
+        setVillage([]);
+		setPosition([]);
+        setIdFront([]);
+        setIdBack([]);
+		setPoliceReport('');
+
+    }
 
 	return (
 		<>
-			<div id='main'>
-				<div className='container'>
-					<div className='container'>
-						<h1>person registration Details</h1>
-					</div>
 
-					<form onSubmit={sendData} className='row g-3'>
-						<div className='col-md-6'>
-							<label
-								htmlFor='d_cus'
-								className='form-label'
-							>
-								person name
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='name'
-								onChange={(e) => {
-									set_name(e.target.value);
-									//we use onchange to take input when the input is submmitin g
-								}}
-							/>
-						</div>
+            <Sidebar />
+            <div id="main">
 
-						<div className='col-md-6'>
-							<label
-								htmlFor='phone'
-								className='form-label'
-							>
-								employee phone number
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='phone'
-								onChange={(e) => {
-									set_phone(e.target.value);
-								}}
-							/>
-						</div>
+                <form onSubmit={sendData}>
 
-						<div className='col-12'>
-							<label
-								htmlFor='inputAddress'
-								className='form-label'
-							>
-								Address
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='inputAddress'
-								placeholder='1234 Main St'
-								onChange={(e) => {
-									setinputAddress(e.target.value);
-								}}
-							/>
-						</div>
+                    <div class="row m-5">
+                        <h3><b>Register poor people as Employees</b></h3>
+                    </div>
 
-						<div className='col-12'>
-							<label
-								htmlFor='inputAddress2'
-								className='form-label'
-							>
-								Address 2
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='inputAddress2'
-								placeholder='Apartment, studio, or floor'
-								onChange={(e) => {
-									setinputAddress2(e.target.value);
-								}}
-							/>
-						</div>
+                    <div class="form-group">
+                        <div className="row m-5">
+                            <div class="col-3">
+                                <label for="name">Full Name 
+                                    <span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    required
+                                    placeholder=""
+                                    onChange={(e) => {
+                                        setName(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
 
-						<div className='col-md-6'>
-							<label
-								htmlFor='village'
-								className='form-label'
-							>
-								village name
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='village'
-								onChange={(e) => {
-									set_village(e.target.value);
-								}}
-							/>
-						</div>
+                    <div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="code">Mobile Number<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
 
-						<div className='col-md-4'>
-							<label
-								htmlFor='position'
-								className='form-label'
-							>
-								job position
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='position'
-								onChange={(e) => {
-									set_position(e.target.value);
-								}}
-							/>
-						</div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="phone1"
+                                    required
+                                    pattern="\d{10}"
+                                    placeholder="Ex: 011xxxxxxx"
+                                    onChange={(e) => {
+                                        setPhone(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
 
-						<div className='col-md-2'>
-							<label
-								htmlFor='inputZip'
-								className='form-label'
-							>
-								add NIC front photo
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='idfront'
-								onChange={(e) => {
-									set_idfront(e.target.value);
-								}}
-							/>
-						</div>
 
-						<div className='col-md-2'>
-							<label
-								htmlFor='inputZip'
-								className='form-label'
-							>
-								add NIC back photo
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='idback'
-								onChange={(e) => {
-									set_idback(e.target.value);
-								}}
-							/>
-						</div>
+                    <div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">Address<span style={{ color: "red" }}><sup>*</sup></span></label>
 
-						<div className='col-md-2'>
-							<label
-								htmlFor='inputZip'
-								className='form-label'
-							>
-								add police report photo
-							</label>
-							<input
-								type='text'
-								className='form-control'
-								id='policeReport'
-								onChange={(e) => {
-									set_policeReport(e.target.value);
-								}}
-							/>
-						</div>
+                            </div>
+                            <div class="col-4">
+                                <textarea
+                                    class="form-control"
+                                    id="address"
+                                    rows="3"
+                                    required
+                                    onChange={(e) => {
+                                        setAddress(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
 
-						<div className='col-12'>
-							<center>
-								{' '}
-								<button
-									type='submit'
-									className='btn btn-primary'
-								>
-									proceed details
-								</button>
-							</center>
-						</div>
-					</form>
-				</div>
-			</div>
-		</>
+
+					<div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">City<span style={{ color: "red" }}><sup>*</sup></span></label>
+
+                            </div>
+                            <div class="col-4">
+                                <textarea
+                                    class="form-control"
+                                    id="address"
+                                    rows="3"
+                                    required
+                                    onChange={(e) => {
+                                        setAddress2(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">Village<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nic"
+                                    required
+                                    onChange={(e) => {
+                                        setVillage(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">Position<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nic"
+                                    required
+                                    onChange={(e) => {
+                                        setPosition(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+					<div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">NIC Front side<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nic"
+                                    required
+                                    onChange={(e) => {
+                                        setIdFront(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
+					<div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="price">NIC Back side<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="nic"
+                                    required
+                                    onChange={(e) => {
+                                        setIdBack(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row m-5">
+                            <div class="col-3">
+                                <label for="description" class="form-label">Police Report<span style={{ color: "red" }}><sup>*</sup></span></label>
+                            </div>
+                            <div class="col-4">
+                                <input
+                                    class="form-control"
+                                    id="description"
+                                    tyle="text"
+                                    required
+                                    onChange={(e) => {
+                                        setPoliceReport(e.target.value);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <div class="row m-5">
+                        <div className="col-1">
+                            <Link to={`/sidebar`}><button type="submit" class="btn btn-outline-success">
+                                Back
+                            </button></Link>
+                        </div>
+                        <div className="col-2">
+                            <button type="submit" class="btn btn-outline-primary">
+                                Create Employee
+                            </button>
+                        </div>
+                        <div className="col-4">
+                            <button type="reset" class="btn btn-outline-danger">
+                                Clear Form
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </>
 	);
-};
+}
 
 export default RegisterPersonForm;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 import axios from "axios";
@@ -48,7 +48,7 @@ function EditRegisterForm(props) {
                   });
           }
           getregisterPerson();
-      }, [id]);
+      }, []);
   
   
       function update(e) {
