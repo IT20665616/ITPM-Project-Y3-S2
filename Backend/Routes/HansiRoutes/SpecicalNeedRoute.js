@@ -67,10 +67,6 @@ router.route("/").get((req, res) => {
 /******************************************************************/
 // UPDATE function
 
-//we are taking the perticuler object id from the url
-//don't forget to put : 
-//we use put method to update details
-
 router.route("/update/:id").put(async (req, res) => {
 
     let userID = req.params.id;

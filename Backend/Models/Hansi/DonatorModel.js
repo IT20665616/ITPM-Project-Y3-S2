@@ -6,27 +6,27 @@ const DonatorSchema = new Schema({
         type : String,
         required : true
     },
-    name : {
+    dname : {
         type : String,
         required : true
     },
 
-    phone1 : {
+    dphone1 : {
         type : String,
         required : true
     },
 
-    phone2 : {
+    dphone2 : {
         type : String,
         required : true
     },
 
-    address : {
+    daddress : {
         type : String,
         required : true
     },
 
-    email : {
+    demail : {
         type : String,
         required : true
     },

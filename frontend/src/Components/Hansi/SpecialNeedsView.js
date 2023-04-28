@@ -26,11 +26,11 @@ function SpecialNeedsView() {
 
 
 
-    const [name, setName] = useState("");
-    const [phone1, setPhone1] = useState("");
-    const [phone2, setPhone2] = useState("");
-    const [address, setAddress] = useState("");
-    const [email, setEmail] = useState("");
+    const [dname, setName] = useState("");
+    const [dphone1, setPhone1] = useState("");
+    const [dphone2, setPhone2] = useState("");
+    const [daddress, setAddress] = useState("");
+    const [demail, setEmail] = useState("");
     const [specialNeed, setSpecialNeeds] = useState([]);
     const status = "Accepted";
 
@@ -39,11 +39,11 @@ function SpecialNeedsView() {
 
         const newDonator = {
             specialNeedRef,
-            name,
-            phone1,
-            phone2,
-            address,
-            email
+            dname,
+            dphone1,
+            dphone2,
+            daddress,
+            demail
         };
 
 

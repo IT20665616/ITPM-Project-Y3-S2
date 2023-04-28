@@ -9,6 +9,7 @@ import AddSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedCreat
 import SearchSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedSearch";
 import SingleSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedSingle";
 import ViewSpecialNeed from "./Components/Hansi/SpecialNeedsView";
+import DonatorDetails from "./Components/Hansi/GramaNiladhariUI/DonatorDetails";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/addSpecialNeed" element={<AddSpecialNeed />} />
         <Route path="/searchSpecialNeed" element={<SearchSpecialNeed />} />
         <Route path="/singleSpecialNeed/:id" element={<SingleSpecialNeed />} />
+        <Route path="/donatorDetails/:id" element={<DonatorDetails />} />
         <Route path="/viewSpecialNeed" element={<ViewSpecialNeed />} />
 
       </Routes>

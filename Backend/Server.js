@@ -45,7 +45,6 @@ const  registerPersonroute=require("./Routes/SahanRoutes/registerPersons");
 app.use("/registerPerson",registerPersonroute);
 
 
-
 //SpecialNeeds router
 const specialNeedRouter=require("./Routes/HansiRoutes/SpecicalNeedRoute");
 app.use("/SpecialNeed",specialNeedRouter);
