@@ -58,9 +58,9 @@ function CustomerCreate() {
        
       // });
 
-    // setTimeout(() => {
-    //   window.location.replace("http://localhost:3000");
-    // }, 2000);
+    setTimeout(() => {
+      window.location.replace("http://localhost:3000");
+    }, 2000);
 
     setfullName("");
     setNic("");
@@ -81,7 +81,7 @@ function CustomerCreate() {
           <label htmlFor="username" className="form-label">
             Your Name
           </label>
-          <input
+          <input 
             className="form-control"
             name="username"
             onChange={(e) => {
@@ -183,7 +183,7 @@ function CustomerCreate() {
           <label htmlFor="email" className="form-label">
             Date{" "}
           </label>
-          <input
+          <input type="date"
             className="form-control"
             name="email"
             onChange={(e) => {
