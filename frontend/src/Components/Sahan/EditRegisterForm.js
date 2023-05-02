@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-//import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import '../Sahan/StyleSheet.css';
-import '../Sahan/FormStyles.css';
 
 function EditRegisterForm(props) {
     const [name, set_name] = useState("");

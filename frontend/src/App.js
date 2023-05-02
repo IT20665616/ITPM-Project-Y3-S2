@@ -8,7 +8,8 @@ import HomePage from "./Components/Hansi/HomePage";
 //import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
 import RegisterForum from "./Components/Sahan/RegisterPersonForm";
 import EditRegisterForm from "./Components/Sahan/EditRegisterForm";
-import RegisterUpdate from "./Components/Sahan/RegisterUpdate";
+import RegisterUpdate from "./Components/Sahan/EmployeeSingleDetails";
+import RegisterPersonSearch from "./Components/Sahan/RegisterPersonSearch";
 
 function App() {
   return (
@@ -18,8 +19,9 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/editforum" element={<EditRegisterForm/>} />
-        <Route path="/take" element={<RegisterForum/>} />
-        <Route path="/resup" element={<RegisterUpdate/>}/>
+        <Route path="/personRegister" element={<RegisterForum/>} />
+        <Route path="/updateForm/:id" element={<RegisterUpdate/>}/>
+        <Route path="/personSearch" element={<RegisterPersonSearch/>}/>
       </Routes>
     </BrowserRouter>
   )

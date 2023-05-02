@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import FileBase64 from "react-file-base64";
 import axios from 'axios';
 import swal from 'sweetalert';
-import Sidebar  from "../Hansi/GramaNiladhariUI/Sidebar";
-//import Sidebar from '../Hansi/GramaNiladhariUI/Sidebar';
-//get forum data
+import Sidebar from "../Hansi/GramaNiladhariUI/Sidebar";
+
 function RegisterPersonForm() {
 
-	const [name, setName] = useState([]);
+    const [name, setName] = useState([]);
     const [phone, setPhone] = useState([]);
     const [address, setAddress] = useState([]);
     const [address2, setAddress2] = useState([]);
     const [village, setVillage] = useState([]);
     const [position, setPosition] = useState([]);
-    const [idfront, setIdFront] = useState([]);
-	const [idback, setIdBack] = useState([]);
-	const [policeReport, setPoliceReport] = useState([]);
+    const [nic, setIdFront] = useState([]);
+    const [workExperience, setWorkExperience] = useState([]);
+    const [policeReport, setPoliceReport] = useState([]);
 
 
     function sendData(e) {
@@ -26,17 +26,17 @@ function RegisterPersonForm() {
             phone,
             address,
             address2,
-			village,
-			position,
-            idfront,
-            idback,
+            village,
+            position,
+            nic,
+            workExperience,
             policeReport
         };
 
         axios
             .post("http://localhost:8070/registerPerson/addPerson", newEmployee)
             .then((res) => {
-				console.log(res.data);
+                console.log(res.data);
                 swal({
                     title: "Success!",
                     text: "Added Successfully",
@@ -48,13 +48,13 @@ function RegisterPersonForm() {
             .catch((err) => {
                 swal({
                     title: "Error!",
-                    text: "Something went wrong..Try Again !",
+                    text: err,
                     type: "error",
                 });
             });
 
         // setTimeout(() => {
-        //     window.location.replace("http://localhost:3000/addSpecialNeed");
+        //     window.location.reload(true);
         // }, 2000);
 
         setName([]);
@@ -62,15 +62,15 @@ function RegisterPersonForm() {
         setAddress([]);
         setAddress2([]);
         setVillage([]);
-		setPosition([]);
+        setPosition([]);
         setIdFront([]);
-        setIdBack([]);
-		setPoliceReport('');
+        setWorkExperience([]);
+        setPoliceReport([]);
 
-    }
+    }
 
-	return (
-		<>
+    return (
+        <>
 
             <Sidebar />
             <div id="main">
@@ -84,7 +84,7 @@ function RegisterPersonForm() {
                     <div class="form-group">
                         <div className="row m-5">
                             <div class="col-3">
-                                <label for="name">Full Name 
+                                <label for="name">Full Name
                                     <span style={{ color: "red" }}><sup>*</sup></span></label>
                             </div>
                             <div class="col-4">
@@ -146,17 +146,16 @@ function RegisterPersonForm() {
                     </div>
 
 
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
                                 <label for="price">City<span style={{ color: "red" }}><sup>*</sup></span></label>
 
                             </div>
                             <div class="col-4">
-                                <textarea
+                                <input
                                     class="form-control"
                                     id="address"
-                                    rows="3"
                                     required
                                     onChange={(e) => {
                                         setAddress2(e.target.value);
@@ -186,58 +185,70 @@ function RegisterPersonForm() {
                         </div>
                     </div>
 
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
                                 <label for="price">Position<span style={{ color: "red" }}><sup>*</sup></span></label>
                             </div>
                             <div class="col-4">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="nic"
-                                    required
+                                <select
+                                    className="form-select"
+                                    name="occupation"
                                     onChange={(e) => {
                                         setPosition(e.target.value);
                                     }}
-                                />
+                                >
+                                    <option disabled={true} value="" selected hidden>
+                                        -- Choose Service Type --
+                                    </option>
+                                    <option value="Gardening"> Gardening</option>
+                                    <option value="Domestic and outdoor Cleaning">Domestic and outdoor Cleaning</option>
+                                    <option value="Polishing and Organizing">Polishing and Organizing</option>
+                                    <option value="Eldery care"> Eldery care</option>
+                                    <option value="Security Services"> Security Services</option>
+                                    <option value="Driver"> Drivers</option>
+                                    <option value="Car Washing"> Car Washing</option>
+                                    <option value="Courier Services"> Courier Services</option>
+                                </select>
                             </div>
                         </div>
                     </div>
 
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="price">NIC Front side<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="nicFront">NIC<span style={{ color: "red" }}><sup>*</sup></span></label>
                             </div>
                             <div class="col-4">
                                 <input
                                     type="text"
                                     class="form-control"
-                                    id="nic"
+                                    id="nicFront"
                                     required
                                     onChange={(e) => {
                                         setIdFront(e.target.value);
                                     }}
                                 />
+
                             </div>
                         </div>
                     </div>
 
 
-					<div class="form-group">
+                    <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="price">NIC Back side<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="nicBack">Work Experience<span style={{ color: "red" }}><sup>*</sup></span></label>
                             </div>
                             <div class="col-4">
-                                <input
+                                <textarea
                                     type="text"
                                     class="form-control"
-                                    id="nic"
+                                    id="nicBack"
+                                    rows={3}
                                     required
                                     onChange={(e) => {
-                                        setIdBack(e.target.value);
+                                        setWorkExperience(e.target.value);
                                     }}
                                 />
                             </div>
@@ -247,23 +258,23 @@ function RegisterPersonForm() {
                     <div class="form-group">
                         <div class="row m-5">
                             <div class="col-3">
-                                <label for="description" class="form-label">Police Report<span style={{ color: "red" }}><sup>*</sup></span></label>
+                                <label for="policeReport" class="form-label">Police Report<span style={{ color: "red" }}><sup>*</sup></span></label>
                             </div>
                             <div class="col-4">
-                                <input
-                                    class="form-control"
-                                    id="description"
-                                    tyle="text"
-                                    required
-                                    onChange={(e) => {
-                                        setPoliceReport(e.target.value);
-                                    }}
-                                />
+                                <div className='form-control'>
+                                    <FileBase64
+                                        type="file"
+                                        class="form-control"
+                                        id="nicFront"
+                                        required
+                                        onDone={({ base64 }) => setPoliceReport(base64)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                   
+
                     <div class="row m-5">
                         <div className="col-1">
                             <Link to={`/sidebar`}><button type="submit" class="btn btn-outline-success">
@@ -283,8 +294,8 @@ function RegisterPersonForm() {
                     </div>
                 </form>
             </div>
-        </>
-	);
+        </>
+    );
 }
 
 export default RegisterPersonForm;
