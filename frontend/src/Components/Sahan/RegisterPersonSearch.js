@@ -27,19 +27,18 @@ export default function RegisterPersonSearch() {
     }, []);
 
     function filterRequests(person, position) {
-        if (position !== '') {
+        if (position === "") {
             return person.filter((val) => val.position === position);
         }
-
         return person;
     }
-    const filteredRequests = filterRequests(person, position);
+    const filteredPerson = filterRequests(person, position);
 
 
     function jsPdfgenerator() {
 
         var doc = new jspdf('p', 'pt');
-        const tableRows = filteredRequests.map((val) => [
+        const tableRows = filteredPerson.map((val) => [
             val.name,
             val.phone,
             val.address,
@@ -82,14 +81,14 @@ export default function RegisterPersonSearch() {
                                 <option disabled={true} value="" selected hidden>
                                     --Choose service type--
                                 </option>
-                                <option value="gardening"> Gardening</option>
-                                <option value="domestic">Domestic and outdoor Cleaning</option>
-                                <option value="polishing">Polishing and Organizing</option>
-                                <option value="eldercare"> Eldery care</option>
-                                <option value="securityservice"> Security Services</option>
-                                <option value="driver"> Drivers</option>
-                                <option value="carwash"> Car Washing</option>
-                                <option value="currier"> Courier Services</option>
+                                <option value="Gardening"> Gardening</option>
+                                <option value="Domestic">Domestic and outdoor Cleaning</option>
+                                <option value="Polishing">Polishing and Organizing</option>
+                                <option value="Eldercare"> Eldery care</option>
+                                <option value="SecurityEervice"> Security Services</option>
+                                <option value="Driver"> Drivers</option>
+                                <option value="Carwash"> Car Washing</option>
+                                <option value="Currier"> Courier Services</option>
                             </select>
                         </div>
                     </div>
@@ -119,7 +118,7 @@ export default function RegisterPersonSearch() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredRequests.map((val, key) => {
+                            {filteredPerson.map((val, key) => {
                                 return (
                                     <tr>
                                         <th>{val.name}</th>

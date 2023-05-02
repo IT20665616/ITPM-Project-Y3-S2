@@ -36,7 +36,6 @@ function RegisterPersonForm() {
         axios
             .post("http://localhost:8070/registerPerson/addPerson", newEmployee)
             .then((res) => {
-                console.log(res.data);
                 swal({
                     title: "Success!",
                     text: "Added Successfully",
@@ -202,13 +201,13 @@ function RegisterPersonForm() {
                                         -- Choose Service Type --
                                     </option>
                                     <option value="Gardening"> Gardening</option>
-                                    <option value="Domestic and outdoor Cleaning">Domestic and outdoor Cleaning</option>
-                                    <option value="Polishing and Organizing">Polishing and Organizing</option>
-                                    <option value="Eldery care"> Eldery care</option>
-                                    <option value="Security Services"> Security Services</option>
+                                    <option value="Domestic">Domestic and outdoor Cleaning</option>
+                                    <option value="Polishing">Polishing and Organizing</option>
+                                    <option value="Eldercare"> Eldery care</option>
+                                    <option value="SecurityEervice"> Security Services</option>
                                     <option value="Driver"> Drivers</option>
-                                    <option value="Car Washing"> Car Washing</option>
-                                    <option value="Courier Services"> Courier Services</option>
+                                    <option value="Carwash"> Car Washing</option>
+                                    <option value="Currier"> Courier Services</option>
                                 </select>
                             </div>
                         </div>
