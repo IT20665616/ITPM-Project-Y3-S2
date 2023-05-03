@@ -9,7 +9,7 @@ import Sidebar from "../Hansi/GramaNiladhariUI/Sidebar";
 
 export default function RegisterPersonSearch() {
     const [person, setRegisterPerson] = useState([]);
-    const [position, setPosition] = useState([]);
+    const [position, setPosition] = useState("");
 
     useEffect(() => {
         function getPersons() {
@@ -27,10 +27,13 @@ export default function RegisterPersonSearch() {
     }, []);
 
     function filterRequests(person, position) {
-        if (position === "") {
-            return person.filter((val) => val.position === position);
+        if (position !== "") {
+           return person.filter((val) => val.position === position);
         }
-        return person;
+        else{
+            return person;
+        }
+        
     }
     const filteredPerson = filterRequests(person, position);
 
@@ -73,7 +76,6 @@ export default function RegisterPersonSearch() {
                         <div class="col-3">
                             <select
                                 className="form-select"
-                                name="occupation"
                                 onChange={(e) => {
                                     setPosition(e.target.value);
                                 }}
