@@ -27,6 +27,8 @@ export default function SpecialNeedSearch() {
         getSpecialNeeds();
     }, []);
 
+    
+
     function filterRequestsByDate(specialNeed, searchDate, searchStatus) {
         if (searchDate !== '' && searchStatus !== '') {
             return specialNeed.filter((val) => val.createdDate === searchDate && val.status === searchStatus);

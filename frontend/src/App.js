@@ -18,10 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/sidebar" element={<Sidebar />} />
-
-
         <Route path="/registerperson" element={<RegisterPerson />} />
-
         <Route path="/addSpecialNeed" element={<AddSpecialNeed />} />
         <Route path="/searchSpecialNeed" element={<SearchSpecialNeed />} />
         <Route path="/singleSpecialNeed/:id" element={<SingleSpecialNeed />} />

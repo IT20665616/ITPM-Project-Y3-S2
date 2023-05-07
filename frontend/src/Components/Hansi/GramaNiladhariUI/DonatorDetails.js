@@ -7,12 +7,12 @@ import axios from "axios";
 
 function DonatorDetails(prop) {
 
-    const [obj, setData] = useState("");
-    const [dname, setName] = useState("");
-    const [dphone1, setPhone1] = useState("");
-    const [dphone2, setPhone2] = useState("");
-    const [daddress, setAddress] = useState("");
-    const [demail, setNic] = useState("");
+    const [data, setData] = useState([]);
+    const [dname, setName] = useState([]);
+    const [dphone1, setPhone1] = useState([]);
+    const [dphone2, setPhone2] = useState([]);
+    const [daddress, setAddress] = useState([]);
+    const [demail, setNic] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -20,10 +20,13 @@ function DonatorDetails(prop) {
             axios
                 .get(`http://localhost:8070/donator/request/${id}`)
                 .then((res) => {
-                    console.log(res.data);
-                    setData(res.data);
-                    setName(obj.dname);
-                    setPhone1(obj.dphone1);
+                    if (res.data.Status) {
+                        setName(res.data.Donator.dname);
+                        setPhone1(res.data.Donator.dphone1);
+                        setPhone2(res.data.Donator.dphone2);
+                        setAddress(res.data.Donator.daddress);
+                        setNic(res.data.Donator.demail);
+                    }
                 })
                 .catch((err) => {
                     alert(err.message);
@@ -89,7 +92,7 @@ function DonatorDetails(prop) {
                                             type="text"
                                             class="form-control"
                                             id="phone2"
-                                            defaultValue={obj.dphone2}
+                                            defaultValue={dphone2}
                                         />
                                     </div>
                                 </div>
@@ -107,7 +110,7 @@ function DonatorDetails(prop) {
                                             class="form-control"
                                             id="address"
                                             rows="3"
-                                            value={obj.daddress}
+                                            value={daddress}
                                         />
                                     </div>
                                 </div>
@@ -123,7 +126,7 @@ function DonatorDetails(prop) {
                                             type="text"
                                             class="form-control"
                                             id="nic"
-                                            value={obj.demail}
+                                            value={demail}
                                             readOnly
                                         />
                                     </div>
