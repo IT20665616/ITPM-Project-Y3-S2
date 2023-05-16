@@ -7,7 +7,7 @@ import axios from "axios";
 
 function DonatorDetails(prop) {
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState("");
     const [dname, setName] = useState([]);
     const [dphone1, setPhone1] = useState([]);
     const [dphone2, setPhone2] = useState([]);
@@ -20,13 +20,8 @@ function DonatorDetails(prop) {
             axios
                 .get(`http://localhost:8070/donator/request/${id}`)
                 .then((res) => {
-                    if (res.data.Status) {
-                        setName(res.data.Donator.dname);
-                        setPhone1(res.data.Donator.dphone1);
-                        setPhone2(res.data.Donator.dphone2);
-                        setAddress(res.data.Donator.daddress);
-                        setNic(res.data.Donator.demail);
-                    }
+                   console.log(res.data.donator);
+                   setData(res.data.donator);
                 })
                 .catch((err) => {
                     alert(err.message);
@@ -34,6 +29,7 @@ function DonatorDetails(prop) {
         }
         getDonator();
     }, []);
+
 
     
 
@@ -46,6 +42,8 @@ function DonatorDetails(prop) {
                     <div class="row m-5">
                         <h3><b>Details of the Donator</b></h3>
                     </div>
+                    {data && data.map((val, key) => {
+                                return (
                         <>
                             <div class="form-group">
                                 <div className="row m-5">
@@ -57,7 +55,7 @@ function DonatorDetails(prop) {
                                             type="text"
                                             class="form-control"
                                             id="name"
-                                            defaultValue={dname}
+                                            value={val.dname}
                                             readOnly
                                         />
                                     </div>
@@ -75,7 +73,7 @@ function DonatorDetails(prop) {
                                             type="text"
                                             class="form-control"
                                             id="phone1"
-                                            value={dphone1}
+                                            value={val.dphone1}
                                             
                                         />
                                     </div>
@@ -92,7 +90,7 @@ function DonatorDetails(prop) {
                                             type="text"
                                             class="form-control"
                                             id="phone2"
-                                            defaultValue={dphone2}
+                                            value={val.dphone2}
                                         />
                                     </div>
                                 </div>
@@ -110,7 +108,7 @@ function DonatorDetails(prop) {
                                             class="form-control"
                                             id="address"
                                             rows="3"
-                                            value={daddress}
+                                            value={val.daddress}
                                         />
                                     </div>
                                 </div>
@@ -126,7 +124,7 @@ function DonatorDetails(prop) {
                                             type="text"
                                             class="form-control"
                                             id="nic"
-                                            value={demail}
+                                            value={val.demail}
                                             readOnly
                                         />
                                     </div>
@@ -134,6 +132,8 @@ function DonatorDetails(prop) {
                             </div>
                         </>
 
+                        );
+                    })}
 
                 </div>
 

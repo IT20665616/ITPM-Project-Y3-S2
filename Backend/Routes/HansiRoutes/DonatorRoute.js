@@ -32,21 +32,13 @@ router.route("/add").post((req, res) => {
 
 router.route("/request/:specialNeedRef").get(async (req, res) => {
 
-    // const donator = await Donator.find({specialNeedRef: req.params.specialNeedRef})
-    // .then((Donator) => {
-    //         res.status(200).send({ Status: "Donator fetched", Donator: Donator })
-    //     }).catch((err) => {
-    //         res.status(500).send({ Status: "Donator fetching unsuccessfull !", err });
-    //     })
-    try {
-        const donator = await Donator.find({specialNeedRef: req.params.specialNeedRef});
-        if (!donator) {
-          return res.status(400).json({ message: 'customer not found' });
-        }
-        res.json(donator);
-      } catch (error) {
-        res.status(500).json({ message: 'Server error' });
-      }
+      const donator = await Donator.find({specialNeedRef: req.params.specialNeedRef})
+
+        .then((donator) => {
+            res.status(200).send({ donator })
+        }).catch((err) => {
+            res.status(500).send({ Status: "Special need fetching unsuccessfull !" });
+        })
 
 })
 

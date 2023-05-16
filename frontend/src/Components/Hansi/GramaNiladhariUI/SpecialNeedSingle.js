@@ -25,6 +25,7 @@ function SpecialNeedSingle(prop) {
                 .then((res) => {
 
                     if (res.data.Status) {
+                        console.log(res.data);
                         setName(res.data.SpecialNeed.name);
                         setPhone1(res.data.SpecialNeed.phone1);
                         setPhone2(res.data.SpecialNeed.phone2);
@@ -33,6 +34,7 @@ function SpecialNeedSingle(prop) {
                         setDescription(res.data.SpecialNeed.description);
                         setAmount(res.data.SpecialNeed.amount);
                         setStatus(res.data.SpecialNeed.status);
+                        console.log(name);
 
                     }
                 })
