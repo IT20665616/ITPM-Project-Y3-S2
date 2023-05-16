@@ -5,12 +5,22 @@ let Donator = require('../../Models/Hansi/DonatorModel');
 
 router.route("/add").post((req, res) => {
 
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = "0" + (date.getMonth() + 1);
+    let year = date.getFullYear();
+    
+    // This arrangement can be altered based on how we want the date's format to appear.
+    let currentDate = `${year}-${month}-${day}`;
+
     const specialNeedRef = req.body.specialNeedRef;
     const dname = req.body.dname;
     const dphone1 = req.body.dphone1;
     const dphone2 = req.body.dphone2;
     const daddress = req.body.daddress;
     const demail = req.body.demail;
+    const createdDate = currentDate;
 
     const DonatorObject = new Donator({
         specialNeedRef,

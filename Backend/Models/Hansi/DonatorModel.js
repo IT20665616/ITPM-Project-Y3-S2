@@ -31,6 +31,11 @@ const DonatorSchema = new Schema({
         required : true
     },
 
+    createdDate : {
+        type : String,
+        required : true
+    }
+
 })
 
 const Donator = mongoose.model("Donator", DonatorSchema);

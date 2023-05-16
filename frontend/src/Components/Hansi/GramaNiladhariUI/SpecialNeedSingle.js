@@ -154,7 +154,8 @@ function SpecialNeedSingle(prop) {
                 <form onSubmit={update}>
 
                     <div class="row m-5">
-                        <h3><b>Details of Special Need - {status}</b></h3>
+                        <h2><b>Details of Special Need</b></h2>
+                        <h4><i> - Donation {status} -</i></h4>
                     </div>
 
                     <div class="form-group">

@@ -63,6 +63,23 @@ function DonatorDetails(prop) {
                             </div>
 
                             <div class="form-group">
+                                <div className="row m-5">
+                                    <div class="col-3">
+                                        <label for="name">Donated Date and Time</label>
+                                    </div>
+                                    <div class="col-4">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="name"
+                                            value={val.createdDate}
+                                            disabled
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="row m-5">
                                     <div class="col-3">
                                         <label for="code">Mobile Number </label>
