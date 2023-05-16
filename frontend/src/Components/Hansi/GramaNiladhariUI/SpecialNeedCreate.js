@@ -38,6 +38,10 @@ function SpecialNeedCreate() {
                     timer: 2000,
                     button: false,
                 });
+
+                setTimeout(() => {
+                    window.location.replace("http://localhost:3000/searchSpecialNeed");
+                }, 2000);
             })
             .catch((err) => {
                 swal({
@@ -46,18 +50,6 @@ function SpecialNeedCreate() {
                     type: "error",
                 });
             });
-
-        setTimeout(() => {
-            window.location.replace("http://localhost:3000/addSpecialNeed");
-        }, 2000);
-
-        setName("");
-        setPhone1("");
-        setPhone2("");
-        setAddress("");
-        setNic("");
-        setDescription("");
-        setAmount("");
 
     }
 

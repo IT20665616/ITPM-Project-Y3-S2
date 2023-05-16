@@ -68,6 +68,7 @@ function SpecialNeedSingle(prop) {
                 icon: "error",
                 button: true,
             });
+
         }
         else {
             axios
@@ -80,6 +81,10 @@ function SpecialNeedSingle(prop) {
                         timer: 2000,
                         button: false,
                     });
+
+                    setTimeout(() => {
+                        window.location.replace("http://localhost:3000/searchSpecialNeed");
+                    }, 3000);
                 })
                 .catch((err) => {
                     swal({
@@ -88,10 +93,6 @@ function SpecialNeedSingle(prop) {
                         type: "error",
                     });
                 });
-
-            setTimeout(() => {
-                window.location.replace("http://localhost:3000/searchSpecialNeed");
-            }, 3000);
         }
 
     }

@@ -56,7 +56,7 @@ function DonatorDetails(prop) {
                                             class="form-control"
                                             id="name"
                                             value={val.dname}
-                                            readOnly
+                                            disabled
                                         />
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@ function DonatorDetails(prop) {
                                             class="form-control"
                                             id="phone1"
                                             value={val.dphone1}
-                                            
+                                            disabled
                                         />
                                     </div>
                                 </div>
@@ -91,6 +91,7 @@ function DonatorDetails(prop) {
                                             class="form-control"
                                             id="phone2"
                                             value={val.dphone2}
+                                            disabled
                                         />
                                     </div>
                                 </div>
@@ -109,6 +110,7 @@ function DonatorDetails(prop) {
                                             id="address"
                                             rows="3"
                                             value={val.daddress}
+                                            disabled
                                         />
                                     </div>
                                 </div>
@@ -125,7 +127,7 @@ function DonatorDetails(prop) {
                                             class="form-control"
                                             id="nic"
                                             value={val.demail}
-                                            readOnly
+                                            disabled
                                         />
                                     </div>
                                 </div>
@@ -139,7 +141,7 @@ function DonatorDetails(prop) {
 
                 <div class="row m-5">
                     <div className="col-1">
-                        <Link to={`/searchSpecialNeed`}><button type="submit" class="btn btn-outline-success">
+                        <Link to={`/singleSpecialNeed/${id}`}><button type="submit" class="btn btn-outline-success">
                             Back
                         </button></Link>
                     </div>
