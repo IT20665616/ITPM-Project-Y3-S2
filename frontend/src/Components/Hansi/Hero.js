@@ -28,8 +28,9 @@ const Hero = () => {
                         <div class="col-xl-2 col-md-4">
                             <div class="icon-box">
                                 <i class="ri-question-fill"></i>
-                                <h3><a href="">Request a Service</a></h3>
+                                <h3>Request a Service</h3>
                             </div>
+                            </a>
                         </div>
 
                         <div class="col-xl-2 col-md-4">
