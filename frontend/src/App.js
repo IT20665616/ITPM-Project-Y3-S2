@@ -9,6 +9,7 @@ import CustomerCreate from "./Components/Malshan/CustomerCreate"
 import AllRequests from "./Components/Malshan/AllRequests";
 import Nicrequest from "./Components/Malshan/Nicrequest";
 import Nicviewpage from "./Components/Malshan/Nicviewpage";
+import EditRequest from "./Components/Malshan/EditRequest";
 
 
 
@@ -25,6 +26,11 @@ function App() {
         <Route path="/allrequests" element={<AllRequests />} />
         <Route path="/nic" element={<Nicrequest />} />
         <Route path="/nicrequests" element={<Nicviewpage />} />
+        <Route path="/allrequests" element={<AllRequests />} />
+        <Route path="/updateRequest/:id" element={<EditRequest />} />
+
+        <Route path="/nicRequestView/:nic" element={<Nicviewpage />} />
+
 
 
        

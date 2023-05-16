@@ -35,7 +35,7 @@ function Nicviewpage() {
             window.location.replace(`http://localhost:3000/nicRequestView/${id}`);
         }, 2000);
          
-            // window.location.reload();
+             window.location.reload();
             
         })
         .catch((err) => {
