@@ -163,7 +163,6 @@ router.route("/search/:createdDate").get(async (req, res) => {
       } catch (error) {
         res.status(500).json({ message: 'Server error' });
       }
-
 })
 
 
@@ -177,7 +176,6 @@ router.route("/pending").get(async (req, res) => {
       } catch (error) {
         res.status(500).json({ message: 'Server error' });
       }
-
 })
 
 

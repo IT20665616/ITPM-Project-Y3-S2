@@ -4,17 +4,10 @@ const router = require("express").Router();
 //const { json } = require("express");
 let ServiceRequest = require("../../Models/Malshan/service");
 
-//const {Service} = require("../../Models/Malshan/service");
 
-// router.post("/add", (req,res) =>{
-//     const newservice = new Service(req.body)
-
-//     newservice.save((err)=>{
-//         if(err) return res.status(400),json({success: false,err})
-//         return res.status(200).json({success: true})
-//     })
 
 router.route("/add").post((req, res) => {
+  
   const fullName = req.body.fullName;
   const nic = req.body.nic;
   const mobileNo = Number(req.body.mobileNo);
@@ -154,29 +147,16 @@ router.route("/get").post(async (req, res) => {
   }
 });
 
-// const customer = await ServiceRequest.find({ nic: req.body.nic });
-//     if (customer) {
-//     return res.status(400).json({ message: 'Customer already exist with this nic!' });
-//   } else {
-//     customer.save();
-//   }
-
-//   router.route("/getall").get((req, res) => {
-//        const Reqservices =ServiceRequest.find({ nic:  "11111"})
-//        .then((Reqservices) => {
-//         res.status(200).send({ Status: "Special need fetched", ServiceRequest: request })
-//     }).catch((err) => {
-//         console.log(err);
-//     })
-// })
-
-// router.get('/employees/:nic', async (req, res) => {
-//     try {
-//       const employees = await ServiceRequest.find({ nic: req.params.nic });
-//       res.status(200).send({ Status: "Special need fetched", ServiceRequest: request })
+// router.route("/getByNic").get(async (req, res) => {
+//   try {
+//       const special_need = await ServiceRequest.find({nic: req.body.nic});
+//       if (!special_need) {
+//         return res.status(400).json({ message: 'customer not found' });
+//       }
+//       res.json(special_need);
 //     } catch (error) {
 //       res.status(500).json({ message: 'Server error' });
 //     }
-//   });
+// })
 
 module.exports = router;

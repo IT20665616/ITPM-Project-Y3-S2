@@ -5,10 +5,14 @@ import Sidebar from "./Components/Hansi/GramaNiladhariUI/Sidebar";
 import Header from "./Components/Hansi/Header";
 import HomePage from "./Components/Hansi/HomePage";
 import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
+
 import CustomerCreate from "./Components/Malshan/CustomerCreate"
 import AllRequests from "./Components/Malshan/AllRequests";
 import Nicrequest from "./Components/Malshan/Nicrequest";
-import Nicviewpage from "./Components/Malshan/Nicviewpage";
+import NicResults from "./Components/Malshan/NicResults";
+import EditRequest from "./Components/Malshan/EditRequest";
+import Details from "./Components/Malshan/DetailsForGN";
+
 
 
 import AddSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedCreate";
@@ -28,11 +32,11 @@ function App() {
         <Route path="/request" element={<CustomerCreate />} />
         <Route path="/allrequests" element={<AllRequests />} />
         <Route path="/nic" element={<Nicrequest />} />
-        <Route path="/nicrequests" element={<Nicviewpage />} />
+        <Route path="/nic/:nic" element={<NicResults />} />
+        <Route path="/editRequest/:id" element={<EditRequest />} />
+        <Route path="/details/:id" element={<Details />} />
 
 
-       
-        
         <Route path="/addSpecialNeed" element={<AddSpecialNeed />} />
         <Route path="/searchSpecialNeed" element={<SearchSpecialNeed />} />
         <Route path="/singleSpecialNeed/:id" element={<SingleSpecialNeed />} />
