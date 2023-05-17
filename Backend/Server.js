@@ -14,9 +14,10 @@ const PORT = process.env.PORT || 8070;
 
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
-//app.use(cookieParser());s
-app.use(cors());
+//app.use(cookieParser());
+
 app.use(bodyParser.json());
+app.use(cors());
 
 const URL = process.env.MONGODB_URL;
 
@@ -62,3 +63,9 @@ app.use("/service",serviceRouter);
 //Donator router
 const DonatorRouter=require("./Routes/HansiRoutes/DonatorRoute");
 app.use("/donator",DonatorRouter);
+const router = require("./Routes/EsharaRoutes/officers_route");
+const appointment = require("./Routes/EsharaRoutes/appointments_route");
+
+
+app.use("/officers", router);
+app.use(appointment);

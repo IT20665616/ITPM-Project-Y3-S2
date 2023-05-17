@@ -26,6 +26,22 @@ import SingleSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedSi
 import ViewSpecialNeed from "./Components/Hansi/SpecialNeedsView";
 import DonatorDetails from "./Components/Hansi/GramaNiladhariUI/DonatorDetails";
 
+import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
+import React from "react";
+import './App.css';
+
+import officers from './Components/Eshara/village officers/officers';
+import registerOfficers from './Components/Eshara/village officers/registerOfficers';
+import editOfficer from './Components/Eshara/village officers/editOfficer';
+import userProfile from "./Components/Eshara/village officers/userProfile";
+
+import appointments from "./Components/Eshara/appointments/appointments";
+import createAppointments from "./Components/Eshara/appointments/createAppointment";
+import editAppointment from "./Components/Eshara/appointments/editAppointment";
+
+
+
+
 
 function App() {
   return (
@@ -54,10 +70,22 @@ function App() {
         <Route path="/singleSpecialNeed/:id" element={<SingleSpecialNeed />} />
         <Route path="/donatorDetails/:id" element={<DonatorDetails />} />
         <Route path="/viewSpecialNeed" element={<ViewSpecialNeed />} />
+        <Route path="/registerperson" element={<RegisterPerson />} />
+        <Route path="/officers" exact Component={ officers } > </Route>
+      <Route path="/officers/add" Component={ registerOfficers  } > </Route>
+      <Route path="/officers/update/:id" Component={editOfficer}></Route>
+      <Route path="/officers/:id" Component={userProfile}></Route>
+    
+      
+
+      <Route path="/appointments" exact Component={ appointments } > </Route>
+      <Route path="/appointments/add" Component={ createAppointments  } > </Route>
+      <Route path="/appointment/update/:id" exact Component={editAppointment}></Route>
+
 
       </Routes>
     </BrowserRouter>
   )
-}//  <Route path="/registerPerson" element={<RegisterPerson />} />
+}
 
 export default App;
