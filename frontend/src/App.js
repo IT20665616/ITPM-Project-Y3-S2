@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";// import-react-
 //this is use to create navigation routes for pages
 
 import Sidebar from "./Components/Hansi/GramaNiladhariUI/Sidebar";
-//import Header from "./Components/Hansi/Header";
 import HomePage from "./Components/Hansi/HomePage";
-//import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
+
+
 import RegisterForum from "./Components/Sahan/RegisterPersonForm";
 import EditRegisterForm from "./Components/Sahan/EditRegisterForm";
 import RegisterUpdate from "./Components/Sahan/EmployeeSingleDetails";
 import RegisterPersonSearch from "./Components/Sahan/RegisterPersonSearch";
+
 
 import CustomerCreate from "./Components/Malshan/CustomerCreate"
 import AllRequests from "./Components/Malshan/AllRequests";
@@ -17,7 +18,6 @@ import Nicrequest from "./Components/Malshan/Nicrequest";
 import NicResults from "./Components/Malshan/NicResults";
 import EditRequest from "./Components/Malshan/EditRequest";
 import Details from "./Components/Malshan/DetailsForGN";
-
 
 
 import AddSpecialNeed from "./Components/Hansi/GramaNiladhariUI/SpecialNeedCreate";
@@ -34,11 +34,13 @@ function App() {
         
         <Route path="/" element={<HomePage/>} />
         <Route path="/sidebar" element={<Sidebar />} />
+
         <Route path="/editforum" element={<EditRegisterForm/>} />
         <Route path="/personRegister" element={<RegisterForum/>} />
         <Route path="/updateForm/:id" element={<RegisterUpdate/>}/>
         <Route path="/personSearch" element={<RegisterPersonSearch/>}/>
-        <Route path="/registerperson" element={<RegisterPerson />} />
+        
+
         <Route path="/request" element={<CustomerCreate />} />
         <Route path="/allrequests" element={<AllRequests />} />
         <Route path="/nic" element={<Nicrequest />} />
