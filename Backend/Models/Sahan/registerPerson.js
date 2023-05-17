@@ -30,11 +30,11 @@ const registerPersonSchema = new Schema({
 		type: String,
 		required: true
 	},
-	idfront: {
+	nic: {
 		type: String,
 		required: true
 	},
-	idback: {
+	workExperience: {
 		type: String,
 		required: true
 	},

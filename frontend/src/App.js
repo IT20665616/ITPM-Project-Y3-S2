@@ -1,10 +1,15 @@
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";// import-react-router-dom
+//this is use to create navigation routes for pages
 
 import Sidebar from "./Components/Hansi/GramaNiladhariUI/Sidebar";
-import Header from "./Components/Hansi/Header";
+//import Header from "./Components/Hansi/Header";
 import HomePage from "./Components/Hansi/HomePage";
-import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
+//import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
+import RegisterForum from "./Components/Sahan/RegisterPersonForm";
+import EditRegisterForm from "./Components/Sahan/EditRegisterForm";
+import RegisterUpdate from "./Components/Sahan/EmployeeSingleDetails";
+import RegisterPersonSearch from "./Components/Sahan/RegisterPersonSearch";
 
 import CustomerCreate from "./Components/Malshan/CustomerCreate"
 import AllRequests from "./Components/Malshan/AllRequests";
@@ -26,8 +31,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path="/" element={<HomePage/>} />
         <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/editforum" element={<EditRegisterForm/>} />
+        <Route path="/personRegister" element={<RegisterForum/>} />
+        <Route path="/updateForm/:id" element={<RegisterUpdate/>}/>
+        <Route path="/personSearch" element={<RegisterPersonSearch/>}/>
         <Route path="/registerperson" element={<RegisterPerson />} />
         <Route path="/request" element={<CustomerCreate />} />
         <Route path="/allrequests" element={<AllRequests />} />
@@ -46,6 +56,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   )
-}
+}//  <Route path="/registerPerson" element={<RegisterPerson />} />
 
 export default App;
