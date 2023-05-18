@@ -50,10 +50,12 @@ const Hero = () => {
                         </div>
 
                         <div class="col-xl-2 col-md-4">
-                            <div class="icon-box">
-                                <i class="ri-calendar-check-fill"></i>
-                                <h3><a href="/appointments">Appointments with Grama Niladhari</a></h3>
-                            </div>
+                            <Link to={`/addAppointment`}>
+                                <div class="icon-box">
+                                    <i class="ri-calendar-check-fill"></i>
+                                    <h3><a href="/appointments">Appointments with Grama Niladhari</a></h3>
+                                </div>
+                            </Link>
                         </div>
 
                         <div class="col-xl-2 col-md-4">

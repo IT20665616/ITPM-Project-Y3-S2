@@ -23,39 +23,35 @@ router.get ("/appointments", async (req, res, next) => {
   });
 
     //add new appoinment
-  router.post ("/appointment/add", async (req, res, next) => {
-    const { 
-        name, 
-        NIC, 
-        email, 
-        mobileNo, 
-        description, 
+  router.post ("/add", async (req, res, next) => {
+    
+    const name = req.body.name;
+    const nic = req.body.nic;
+    const email = req.body.email;
+    const mobileNo = req.body.mobileNo;
+    const description = req.body.description;
+    const date = req.body.date;
+    const time = req.body.time;
+    const status = "Pending";
+
+    const appObj = new appointment({
+        name,
+        nic,
+        email,
+        mobileNo,
+        description,
         date,
-        time 
-    } = req.body;
-    let apt;
-    try {
-      apt = new appointment({  
-        name, 
-        NIC, 
-        email, 
-        mobileNo, 
-        description, 
-        date,
-        time 
-      });
-      await apt.save();
-    } catch (err) {
-      console.log(err);
-    }
+        time,
+        status
   
-    if (!apt) {
-      return res.status(500).json({ message: "Unable To Add" });
-    }
-    return res.status(201).json({ 
-      success:"Appointment added successfully",
-      appointment: apt
-    });
+    })
+
+    appObj.save().then(() => {
+        res.json(appObj);
+
+    }).catch((err) => {
+        console.log(err);
+    })
   });
 
 
@@ -114,11 +110,11 @@ router.get("/appointment/:id",async(req,res,next) => {
   });
 
 //Delete specific appoinment
-router.delete('/appointment/delete/:id' ,async(req,res) =>{
+router.delete('/delete/:id' ,async(req,res) =>{
     const id = req.params.id;
     let apt;
     try {
-        apt = await appointment.findByIdAndRemove(id);
+        apt = await appointment.findByIdAndDelete(id);
     } catch (err) {
       console.log(err);
     }
@@ -127,6 +123,27 @@ router.delete('/appointment/delete/:id' ,async(req,res) =>{
     }
     return res.status(200).json({ message: "Appoinment successfully deleted" });
   });
+
+
+  router.route("/update/status/:id").put(async (req, res) => {
+
+    let userID = req.params.id;
+
+    const status = req.body.status;
+
+    const newStatus = {
+        status,
+    }
+
+    const update = await appointment.findByIdAndUpdate(userID, newStatus)
+
+        .then(() => {
+            res.status(200).send({ status: "Updated Successfully !" })
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send({ status: "Database couldn't update properly" })
+        })
+})
 
 
 

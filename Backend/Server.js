@@ -63,9 +63,12 @@ app.use("/service",serviceRouter);
 //Donator router
 const DonatorRouter=require("./Routes/HansiRoutes/DonatorRoute");
 app.use("/donator",DonatorRouter);
-const router = require("./Routes/EsharaRoutes/officers_route");
-const appointment = require("./Routes/EsharaRoutes/appointments_route");
 
+//appointments
+const AppRouter=require("./Routes/EsharaRoutes/appointments_route");
+app.use("/appointment",AppRouter);
 
-app.use("/officers", router);
-app.use(appointment);
+//officers
+const OffierRouter=require("./Routes/EsharaRoutes/officers_route");
+app.use("/officer",OffierRouter);
+

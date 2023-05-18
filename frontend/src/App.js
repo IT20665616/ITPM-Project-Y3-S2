@@ -27,15 +27,14 @@ import ViewSpecialNeed from "./Components/Hansi/SpecialNeedsView";
 import DonatorDetails from "./Components/Hansi/GramaNiladhariUI/DonatorDetails";
 
 import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
-import React from "react";
-import './App.css';
 
 import officers from './Components/Eshara/village officers/officers';
 import registerOfficers from './Components/Eshara/village officers/registerOfficers';
 import editOfficer from './Components/Eshara/village officers/editOfficer';
-import userProfile from "./Components/Eshara/village officers/userProfile";
+import AllAppointments from "./Components/Eshara/Appointment/AllAppointments";
+import AppointmentCreate from "./Components/Eshara/Appointment/AppointmentCreate";
 
-import appointments from "./Components/Eshara/appointments/appointments";
+// import appointments from "./Components/Eshara/appointments/appointments";
 import createAppointments from "./Components/Eshara/appointments/createAppointment";
 import editAppointment from "./Components/Eshara/appointments/editAppointment";
 
@@ -47,15 +46,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        
-        <Route path="/" element={<HomePage/>} />
+
+        <Route path="/" element={<HomePage />} />
         <Route path="/sidebar" element={<Sidebar />} />
 
-        <Route path="/editforum" element={<EditRegisterForm/>} />
-        <Route path="/personRegister" element={<RegisterForum/>} />
-        <Route path="/updateForm/:id" element={<RegisterUpdate/>}/>
-        <Route path="/personSearch" element={<RegisterPersonSearch/>}/>
-        
+        <Route path="/editforum" element={<EditRegisterForm />} />
+        <Route path="/personRegister" element={<RegisterForum />} />
+        <Route path="/updateForm/:id" element={<RegisterUpdate />} />
+        <Route path="/personSearch" element={<RegisterPersonSearch />} />
+
 
         <Route path="/request" element={<CustomerCreate />} />
         <Route path="/allrequests" element={<AllRequests />} />
@@ -71,16 +70,19 @@ function App() {
         <Route path="/donatorDetails/:id" element={<DonatorDetails />} />
         <Route path="/viewSpecialNeed" element={<ViewSpecialNeed />} />
         <Route path="/registerperson" element={<RegisterPerson />} />
-        <Route path="/officers" exact Component={ officers } > </Route>
-      <Route path="/officers/add" Component={ registerOfficers  } > </Route>
-      <Route path="/officers/update/:id" Component={editOfficer}></Route>
-      <Route path="/officers/:id" Component={userProfile}></Route>
-    
-      
 
-      <Route path="/appointments" exact Component={ appointments } > </Route>
-      <Route path="/appointments/add" Component={ createAppointments  } > </Route>
-      <Route path="/appointment/update/:id" exact Component={editAppointment}></Route>
+        <Route path="/appoitments" element={<AllAppointments />} />
+        <Route path="/addAppointment" element={<AppointmentCreate />} />
+
+
+        <Route path="/officers" element={officers} />
+        <Route path="/officers/add" element={registerOfficers} > </Route>
+        <Route path="/officers/update/:id" element={editOfficer}></Route>
+        {/* <Route path="/appointments" element={AllAppointments}/> */}
+
+        {/* <Route path="/appointments" element={appointments} > </Route> */}
+        {/* <Route path="/appointments/add" element={createAppointments} > </Route> */}
+        <Route path="/appointment/update/:id" element={editAppointment}></Route>
 
 
       </Routes>

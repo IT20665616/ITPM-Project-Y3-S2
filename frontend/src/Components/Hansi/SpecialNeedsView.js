@@ -81,12 +81,6 @@ function SpecialNeedsView() {
             window.location.reload();
         }, 2000);
 
-
-        setName("");
-        setPhone1("");
-        setPhone2("");
-        setAddress("");
-        setEmail("");
     }
 
 

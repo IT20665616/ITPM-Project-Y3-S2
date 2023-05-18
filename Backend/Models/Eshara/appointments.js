@@ -7,7 +7,7 @@ const appointmentSchema = new Schema({
     type: String,
     required: true,
   },
-  NIC: {
+  nic: {
     type: String,
     required: true,
   },
@@ -24,12 +24,15 @@ const appointmentSchema = new Schema({
     required: true,
   },
   date:{
-    type:Date,
+    type:String,
     required:true
   },
   time:{
     type:String,
     required:true
+  },
+  status: {
+    type: String
   }
 });
 

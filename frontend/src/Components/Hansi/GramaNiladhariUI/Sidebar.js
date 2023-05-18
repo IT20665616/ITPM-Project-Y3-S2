@@ -29,7 +29,7 @@ const Sidebar = () => {
               {/* </Link> */}
               <li><a href="/allrequests" class="nav-link scrollto"><i class="bx bx-file"></i> <span>Customer Requests</span></a></li>
               <li><a href="/personSearch" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Employees</span></a></li>
-              <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
+              <li><a href="/appoitments" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>My Appointments</span></a></li>
               <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
               <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
             </ul>
