@@ -27,7 +27,7 @@ function AppointmentCreate() {
     };
 
     axios
-        .post("http://localhost:8070/", newAppointment)
+        .post("http://localhost:8070/appointment/add", newAppointment)
         .then(() => {
             swal({
                 title: "Appointment Request Sent ..!",

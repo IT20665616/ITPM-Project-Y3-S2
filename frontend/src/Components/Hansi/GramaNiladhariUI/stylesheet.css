@@ -50,10 +50,10 @@
 }
 
 #sidebar .profile img {
-  margin: 15px auto;
+  margin: 40px auto;
   display: block;
-  width: 120px;
-  border: 8px solid #2c2f3f;
+  width: 250px;
+  /* border: 8px solid #2c2f3f; */
 }
 
 #sidebar .profile h1 {

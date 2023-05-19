@@ -90,7 +90,6 @@ export default function EditRequest() {
           <h2>Services</h2>
           <p>You can edit your request</p>
         </div>
-        <form onSubmit={updatedata}>
 
           <div class="form-group">
             <div className="row m-5">
@@ -259,157 +258,12 @@ export default function EditRequest() {
 
           <div className="row m-5">
             <div className="col-2" style={{ textAlign: "end" }}>
-              <button type="submit" className="btn btn-primary">Update Request</button>
+              <button type="submit" className="btn btn-primary" onClick={updatedata}>Update Request</button>
             </div>
           </div>
 
-        </form>
       </section>
       <Footer />
     </div>
-
-
-
-
-    // <div>
-    //   <div className="container shadow my-5  col-md-5 d-flex  align-items-center  justify-content-center form order-2">
-    //     <form>
-    //       <div className="form-group">
-    //         <label htmlFor="username" className="form-label">
-    //           Your Name
-    //         </label>
-    //         <input
-    //           value={fullName}
-    //           className="form-control"
-    //           name="username"
-    //           onChange={(e) => {
-    //             setfullName(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-    //       <div className="form-group">
-    //         <label htmlFor="email" className="form-label">
-    //           NIC
-    //         </label>
-    //         <input
-    //           value={nic}
-    //           className="form-control"
-    //           name="email"
-    //           onChange={(e) => {
-    //             setNic(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <label htmlFor="email" className="form-label">
-    //           Mobile No
-    //         </label>
-    //         <input
-    //           value={mobileNo}
-    //           className="form-control"
-    //           name="email"
-    //           onChange={(e) => {
-    //             setMobileNo(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <label htmlFor="email" className="form-label">
-    //           email{" "}
-    //         </label>
-    //         <input
-    //           value={email}
-    //           className="form-control"
-    //           name="email"
-    //           onChange={(e) => {
-    //             setEmail(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <label htmlFor="email" className="form-label">
-    //           address{" "}
-    //         </label>
-    //         <input
-    //           value={address}
-    //           className="form-control"
-    //           name="email"
-    //           onChange={(e) => {
-    //             setAddress(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <label htmlFor="email" className="form-label">
-    //           Lane{" "}
-    //         </label>
-    //         <input
-    //           value={lane}
-    //           className="form-control"
-    //           name="email"
-    //           onChange={(e) => {
-    //             setLane(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <label htmlFor="occupation" className="form-label">
-    //           Requested service type
-    //         </label>
-    //         <select
-    //           value={serviceType}
-    //           className="form-select"
-    //           name="occupation"
-    //           onChange={(e) => {
-    //             setserviceType(e.target.value);
-    //           }}
-    //         >
-    //           <option disabled={true} value="" selected hidden>
-    //             --Choose service type--
-    //           </option>
-    //           <option value="gardening"> Gardening</option>
-    //           <option value="domestic">Domestic and outdoor Cleaning</option>
-    //           <option value="polishing">Polishing and Organizing</option>
-    //           <option value="eldercare"> Eldery care</option>
-    //           <option value="securityservice"> Security Services</option>
-    //           <option value="driver"> Drivers</option>
-    //           <option value="carwash"> Car Washing</option>
-    //           <option value="currier"> Courier Services</option>
-    //         </select>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <label htmlFor="email" className="form-label">
-    //           Date{" "}
-    //         </label>
-    //         <input
-    //          type="date"
-    //           value={date}
-
-    //           className="form-control"
-    //           name="email"
-    //           onChange={(e) => {
-    //             setDate(e.target.value);
-    //           }}
-    //         ></input>
-    //       </div>
-
-    //       <div className="form-group">
-    //         <button
-    //           onClick={updatedata}
-    //           className="btn btn-outline-primary w-100 mt-4 rounded-pill"
-    //           type="button"
-    //         >
-    //           Submit
-    //         </button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 }

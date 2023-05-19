@@ -27,6 +27,7 @@ function Login() {
             .then((response) => {
                 setUser(response.data);
                 sessionStorage.setItem('userID', response.data._id);
+                sessionStorage.setItem('name', response.data.name);
                 swal({
                     title: "Login Success !",
                     text: "Redirecting to your Profile..",
