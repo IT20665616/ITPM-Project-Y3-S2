@@ -27,7 +27,7 @@ function AppointmentCreate() {
     };
 
     axios
-        .post("http://localhost:8070/appointment/add", newAppointment)
+        .post("http://localhost:8070/", newAppointment)
         .then(() => {
             swal({
                 title: "Appointment Request Sent ..!",
@@ -60,7 +60,7 @@ function AppointmentCreate() {
 
         <div class="section-title m-5">
           <h2>Services</h2>
-          <p>Request your Service</p>
+          <p>Request an Appointment</p>
         </div>
         <form onSubmit={sendData}>
 

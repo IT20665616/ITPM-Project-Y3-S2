@@ -28,18 +28,11 @@ import DonatorDetails from "./Components/Hansi/GramaNiladhariUI/DonatorDetails";
 
 import RegisterPerson from "./Components/Sahan/RegisterPersonForm";
 
-import officers from './Components/Eshara/village officers/officers';
-import registerOfficers from './Components/Eshara/village officers/registerOfficers';
-import editOfficer from './Components/Eshara/village officers/editOfficer';
 import AllAppointments from "./Components/Eshara/Appointment/AllAppointments";
 import AppointmentCreate from "./Components/Eshara/Appointment/AppointmentCreate";
-
-// import appointments from "./Components/Eshara/appointments/appointments";
-import createAppointments from "./Components/Eshara/appointments/createAppointment";
-import editAppointment from "./Components/Eshara/appointments/editAppointment";
-
-
-
+import Registration from "./Components/Eshara/GMRegistration/Registration";
+import Login from "./Components/Eshara/GMRegistration/Login";
+import UserProfile from "./Components/Eshara/GMRegistration/UserProfile";
 
 
 function App() {
@@ -73,16 +66,9 @@ function App() {
 
         <Route path="/appoitments" element={<AllAppointments />} />
         <Route path="/addAppointment" element={<AppointmentCreate />} />
-
-
-        <Route path="/officers" element={officers} />
-        <Route path="/officers/add" element={registerOfficers} > </Route>
-        <Route path="/officers/update/:id" element={editOfficer}></Route>
-        {/* <Route path="/appointments" element={AllAppointments}/> */}
-
-        {/* <Route path="/appointments" element={appointments} > </Route> */}
-        {/* <Route path="/appointments/add" element={createAppointments} > </Route> */}
-        <Route path="/appointment/update/:id" element={editAppointment}></Route>
+        <Route path="/regGM" element={<Registration/>} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/userProfile" element={<UserProfile/>} />
 
 
       </Routes>

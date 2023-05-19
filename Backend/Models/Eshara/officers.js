@@ -7,7 +7,7 @@ const villageOfficersSchema = new Schema({
     type: String,
     required: true,
   },
-  NIC: {
+  nic: {
     type: String,
     required: true,
   },
@@ -16,18 +16,18 @@ const villageOfficersSchema = new Schema({
     required: true,
   },
   mobileNo: {
-    type: Number,
+    type: String,
     required: true,
   },
   email: {
     type: String,
     required: true,
   },
-  registrationCertificate: {
+  regCertificate: {
     type: String,
     required: true,
   },
-  registrationNo: {
+  regNo: {
     type: String,
     required: true,
   },
@@ -35,6 +35,11 @@ const villageOfficersSchema = new Schema({
     type: String,
     required: true,
   },
+
+  password: {
+    type: String,
+    required: true,
+  }
 
 });
 

@@ -22,10 +22,12 @@ const Hero = () => {
 
                     <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
                         <div class="col-xl-2 col-md-4">
-                            <div class="icon-box">
-                                <i class="ri-ball-pen-fill"></i>
-                                <h3><a href="/officers">Grama Niladhari Registration</a></h3>
-                            </div>
+                            <Link to={`/regGM`}>
+                                <div class="icon-box">
+                                    <i class="ri-ball-pen-fill"></i>
+                                    <h3><a href="/officers">Grama Niladhari Registration</a></h3>
+                                </div>
+                            </Link>
                         </div>
 
                         <div class="col-xl-2 col-md-4">
