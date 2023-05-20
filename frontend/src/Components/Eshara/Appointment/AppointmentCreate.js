@@ -13,6 +13,19 @@ function AppointmentCreate() {
   const [time, setTime] = useState("");
   const [date, setDate] = useState();
 
+
+  
+  const validateEmail = (email) => {
+    // Email validation regex pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validateMobileNo = (mobileNo) => {
+    // Check if mobileNo contains exactly 10 digits
+    return /^\d{10}$/.test(mobileNo);
+  };
+
   function sendData(e) {
     e.preventDefault();
 
@@ -26,8 +39,10 @@ function AppointmentCreate() {
         time
     };
 
+  
+
     axios
-        .post("http://localhost:8070/", newAppointment)
+        .post("http://localhost:8070/appointment/add", newAppointment)
         .then(() => {
             swal({
                 title: "Appointment Request Sent ..!",
@@ -119,7 +134,12 @@ function AppointmentCreate() {
                   onChange={(e) => {
                     setMobileNo(e.target.value);
                   }}
+                 
                 />
+
+{mobileNo && !validateMobileNo(mobileNo) && (
+                    <p className="text-danger">Mobile number must be 10 digits</p>
+                  )}
               </div>
 
               <div class="col-2" style={{ textAlign: "center" }}>
@@ -137,6 +157,9 @@ function AppointmentCreate() {
                     setEmail(e.target.value);
                   }}
                 />
+                 {email && !validateEmail(email) && (
+                      <p className="text-danger">Invalid email format</p>
+                    )}
               </div>
             </div>
           </div>

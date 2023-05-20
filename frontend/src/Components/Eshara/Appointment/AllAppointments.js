@@ -152,6 +152,7 @@ export default function AllAppointments() {
                                 <select
                                     className="form-select"
                                     name="occupation"
+                                 //   pattern="/^[a-zA-Z]/"
                                     onChange={(e) => {
                                         setSearchStatus(e.target.value);
                                     }}

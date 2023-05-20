@@ -37,7 +37,17 @@ export default function Registration() {
             setPasswordsMatch(false);
         }
     };
-
+    const validateEmail = (email) => {
+        // Email validation regex pattern
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+      };
+    
+      const validateMobileNo = (mobileNo) => {
+        // Check if mobileNo contains exactly 10 digits
+        return /^\d{10}$/.test(mobileNo);
+      };
+    
 
     function sendData(e) {
         e.preventDefault();
@@ -72,7 +82,7 @@ export default function Registration() {
                 .catch((err) => {
                     swal({
                         title: "Error!",
-                        text: "Something went wrong..Try Again !",
+                        text: "Something went wrong..Try Again !" + err,
                         type: "error",
                     });
                 });
@@ -165,6 +175,9 @@ export default function Registration() {
                                                 setMobileNo(e.target.value);
                                             }}
                                         />
+                                        {mobileNo && !validateMobileNo(mobileNo) && (
+                    <p className="text-danger">Mobile number must be 10 digits</p>
+                  )}
                                     </div>
                                 </div>
                             </div>
@@ -186,6 +199,9 @@ export default function Registration() {
                                                 setEmail(e.target.value);
                                             }}
                                         />
+                                        {email && !validateEmail(email) && (
+                      <p className="text-danger">Invalid email format</p>
+                    )}
                                     </div>
                                 </div>
                             </div>

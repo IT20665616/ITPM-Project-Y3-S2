@@ -5,17 +5,21 @@ import axios from 'axios';
 import swal from 'sweetalert';
 import Sidebar from "../Hansi/GramaNiladhariUI/Sidebar";
 
+const validateMobileNo = (mobileNo) => {
+    // Check if mobileNo contains exactly 10 digits
+    return /^\d{10}$/.test(mobileNo);
+  };
 function RegisterPersonForm() {
 
-    const [name, setName] = useState([]);
-    const [phone, setPhone] = useState([]);
-    const [address, setAddress] = useState([]);
-    const [address2, setAddress2] = useState([]);
-    const [village, setVillage] = useState([]);
-    const [position, setPosition] = useState([]);
-    const [nic, setIdFront] = useState([]);
-    const [workExperience, setWorkExperience] = useState([]);
-    const [policeReport, setPoliceReport] = useState([]);
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [address2, setAddress2] = useState("");
+    const [village, setVillage] = useState("");
+    const [position, setPosition] = useState("");
+    const [nic, setIdFront] = useState("");
+    const [workExperience, setWorkExperience] = useState("");
+    const [policeReport, setPoliceReport] = useState("");
 
 
     function sendData(e) {
@@ -119,6 +123,9 @@ function RegisterPersonForm() {
                                         setPhone(e.target.value);
                                     }}
                                 />
+                                {phone && !validateMobileNo(phone) && (
+                    <p className="text-danger">Mobile number must be 10 digits</p>
+                  )}
                             </div>
                         </div>
                     </div>
