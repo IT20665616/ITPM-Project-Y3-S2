@@ -14,6 +14,22 @@ function CustomerCreate() {
   const [lane, setLane] = useState("");
   const [serviceType, setserviceType] = useState("");
   const [date, setDate] = useState();
+  const [nicError, setNicError] = useState("");
+
+  const validateEmail = (email) => {
+    // Email validation regex pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+  const validateMobileNo = (mobileNo) => {
+    // Check if mobileNo contains exactly 10 digits
+    return /^\d{10}$/.test(mobileNo);
+  };
+
+  const validateNic = (nic) => {
+    // Check if NIC contains exactly 9 characters and the last character is 'v'
+    return /^[0-9]{9}v$/i.test(nic);
+  };
 
   function sendData(e) {
     e.preventDefault();
@@ -112,9 +128,18 @@ function CustomerCreate() {
                   required
                   placeholder=""
                   onChange={(e) => {
-                    setNic(e.target.value);
+                    const value = e.target.value;
+    setNic(value);
+    if (value && !validateNic(value)) {
+      setNicError("NIC must be 10 characters and end with 'V'.");
+    } else {
+      setNicError("");
+    }
+                    
                   }}
                 />
+
+{nicError && <p className="text-danger">{nicError}</p>}
               </div>
             </div>
           </div>
@@ -137,6 +162,9 @@ function CustomerCreate() {
                     setMobileNo(e.target.value);
                   }}
                 />
+                {mobileNo && !validateMobileNo(mobileNo) && (
+                      <p className="text-danger">Mobile number must be 10 digits</p>
+                    )}
               </div>
 
               <div class="col-2" style={{ textAlign: "center" }}>
@@ -154,6 +182,9 @@ function CustomerCreate() {
                     setEmail(e.target.value);
                   }}
                 />
+                 {email && !validateEmail(email) && (
+                      <p className="text-danger">Invalid email format</p>
+                    )}
               </div>
             </div>
           </div>
@@ -261,4 +292,4 @@ function CustomerCreate() {
   );
 }
 
-export default CustomerCreate;
+export default CustomerCreate;
