@@ -38,7 +38,7 @@ function NicResults() {
           button: false,
         });
         setTimeout(() => {
-          window.location.replace(`http://localhost:3000/nicRequestView/${id}`);
+          window.location.replace(`http://localhost:3000`);
         }, 2000);
 
         window.location.reload();
