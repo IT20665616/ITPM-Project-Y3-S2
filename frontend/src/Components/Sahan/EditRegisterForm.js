@@ -15,7 +15,8 @@ function EditRegisterForm(props) {
 	const [idback, set_idback] = useState("");
 	const [policeReport, set_policeReport] = useState("");
       const { id } = useParams();
-  
+      
+     
       useEffect(() => {
           function getregisterPerson() {
               axios
@@ -109,6 +110,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="name"
+                    required
                     placeholder="card holder's name"
                     value={name}
                     onChange={(e) => {
@@ -126,13 +128,14 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="phone"
+                    required
                     placeholder="enter phone number"
                     
                     onChange={(e) => {
                       set_phone(e.target.value);
                     }}
-                    
-                  />
+                   />
+   
                 </div>
   
                 {/* inputAddress */}
@@ -144,6 +147,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="inputAddress"
+                    required
                     placeholder="enter Address,"
                     value={inputAddress}
                     onChange={(e) => {
@@ -178,6 +182,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="village"
+                    required
                     placeholder="Enter village name"
                     value={village}
                     onChange={(e) => {
@@ -195,6 +200,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="position"
+                    required
                     placeholder="Enter Job position"
                     value={position}
                     onChange={(e) => {
@@ -212,6 +218,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="idfront"
+                    required
                     placeholder="upload NIC front Photo"
                     value={idfront}
                     onChange={(e) => {
@@ -230,6 +237,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="idback"
+                    required
                     placeholder="Enter NIC back Photo"
                     value={idback}
                     onChange={(e) => {
@@ -248,6 +256,7 @@ function EditRegisterForm(props) {
                     type="text"
                     className="form-control"
                     id="policeReport"
+                    required
                     placeholder="Upload policeReport photo"
                     value={policeReport}
                     onChange={(e) => {

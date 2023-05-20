@@ -115,7 +115,7 @@ export default function UserProfile() {
                 <div id="main">
 
                     <div class="section-title m-5">
-                        <h2>Services</h2>
+                       
                         <p>My Profile</p>
                     </div>
 
