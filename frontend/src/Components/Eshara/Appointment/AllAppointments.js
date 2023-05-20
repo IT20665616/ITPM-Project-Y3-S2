@@ -13,7 +13,7 @@ import Sidebar from '../../Hansi/GramaNiladhariUI/Sidebar';
 
 export default function AllAppointments() {
 
-    const [data, setData] = useState("");
+    const [data, setData] = useState([]);
     const [searchDate, setSearchDate] = useState("");
     const [searchStatus, setSearchStatus] = useState("");
 
@@ -102,15 +102,23 @@ export default function AllAppointments() {
     //pdf generating
     function jsPdfgenerator() {
 
-        var doc = new jspdf('l', 'pt', 'a3');
-
-        doc.text(600, 20, 'Appointments List', { align: 'center' },);
-        doc.autoTable({ html: '#class-table' })
-
-        doc.autoTable({
-            columnStyles: { europe: { halign: 'center' } },
-            margin: { top: 10 },
-        })
+        //new document in jspdf
+    var doc = new jspdf('p', 'pt');
+    const tableRows =data.map((val) => [
+      val.name,
+      val.nic,
+      val.mobileNo,
+      val.time,
+      val.date,
+      val.status,
+      ]);
+      
+    doc.autoTable({
+        head: [['Name', 'NIC', 'Mobile No', 'time', 'date', 'status']],
+        body: tableRows,
+        columnStyles: { europe: { halign: 'center' } },
+        margin: { top: 10 },
+      })
 
         doc.save("appointments.pdf");
     }
@@ -125,7 +133,7 @@ export default function AllAppointments() {
                         <h2><b>Current Appointments</b></h2>
                     </div>
 
-                    <div class="row mt-5">
+                    {/* <div class="row mt-5">
                         <div class="col-3">
                             <label for="search">Search by Date</label>
                         </div>
@@ -137,7 +145,7 @@ export default function AllAppointments() {
                                 }}
                             />
                         </div>
-                    </div>
+                    </div> */}
 
                     <div class="row mt-5">
 
