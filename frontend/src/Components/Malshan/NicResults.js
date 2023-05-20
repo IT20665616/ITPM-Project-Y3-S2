@@ -39,9 +39,9 @@ function NicResults() {
         });
         setTimeout(() => {
           window.location.replace(`http://localhost:3000`);
-        }, 2000);
+        }, 4000);
 
-        window.location.reload();
+        // window.location.reload();
 
       })
       .catch((err) => {
