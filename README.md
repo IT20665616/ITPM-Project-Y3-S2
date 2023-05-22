@@ -10,5 +10,21 @@ Member 3 - IT206670708 - Dhananjaya W.K.S
 Member 4 - IT20656874 - Sithmini L.W.S
 
 
-
+Technology
+MERN  Frontend : REACH.JS
+      Backend : NODE.JS
+      DB : MONGO
+      IDE : VS CODE
+      
+Other tools
+   SonarQube
+   Selenium
+   Azure Boards
+   Docker
+   
+   Prerequisites
+        1.VS code
+        2.NODE has been installed to the machine.
+        
+        
 
