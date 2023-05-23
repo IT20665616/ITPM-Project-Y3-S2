@@ -1,9 +1,7 @@
-    # Fully Functional web application for 'POCO CASA' - playpens for kids
+ITPM Project - Year 3 Semester 2
 
 SDG 1 - No Proverty
 Website Name - DreamIt
-
-
 
 Tools and Technologies used
 
